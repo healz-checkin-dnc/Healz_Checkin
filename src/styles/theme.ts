@@ -3,9 +3,13 @@ export const theme = {
   colors: {
     primary: '#F33F90',
     secondary: '#023E8C',
-    background: '#010D27',
     highlight: '#EDC0D5',
-    text: '#FFFFFF',
+
+    greyLight: '#F9F9F9',
+    white: '#FFFFFF',
+    blueDark: '#010D27',
+    healzPink: '#F33F90',
+    pinkShadow: '#EDC0D5'
   },
   spacing: {
     xs: '4px',
