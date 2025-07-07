@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CheckinButton } from './CheckinButton';
+import { CheckinButton } from '../CheckinButton/CheckinButton';
 
 const Container = styled.main`
   display: flex;
@@ -51,6 +51,7 @@ const Input = styled.input`
   background-color: ${({ theme }) => theme.colors.greyLight};
   border-radius: 999px;
   font-size: 1rem;
+  outline-color: #aaaaaa;
   &::placeholder {
     color: #aaa;
   }

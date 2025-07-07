@@ -1,6 +1,6 @@
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import CheckinForm from '../components/CheckinForm';
+import Header from '../components/Header/Header';
+import Footer from '../components/Footer/Footer';
+import CheckinForm from '../components/CheckinForm/CheckinForm';
 
 export default function CheckinPage() {
   return (
