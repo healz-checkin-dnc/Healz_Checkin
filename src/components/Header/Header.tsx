@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import logo from '../assets/logo.svg';
+import logo from '../../assets/logo.svg';
 
 const HeaderContainer = styled.header`
   position: relative;
@@ -14,7 +14,6 @@ const HeaderContainer = styled.header`
 const Logo = styled.img`
   height: 40px;
   width: auto;
-  margin-right: ${({ theme }) => theme.spacing.md};
 `;
 
 const Title = styled.h1`
@@ -22,8 +21,9 @@ const Title = styled.h1`
   font-weight: 400;
   color: ${({ theme }) => theme.colors.white};
   font-family: ${({ theme }) => theme.fonts.main};
-  line-height: 1;
+  line-height: 1.5;
 `;
+
 const RightSpace = styled.div`
   width: 2.5rem; // Match logo size to keep visual balance
 `;

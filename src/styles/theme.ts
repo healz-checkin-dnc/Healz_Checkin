@@ -1,4 +1,3 @@
-
 export const theme = {
   colors: {
     primary: '#F33F90',
@@ -9,7 +8,7 @@ export const theme = {
     white: '#FFFFFF',
     blueDark: '#010D27',
     healzPink: '#F33F90',
-    pinkShadow: '#EDC0D5'
+    pinkShadow: '#EDC0D5',
   },
   spacing: {
     xs: '4px',
