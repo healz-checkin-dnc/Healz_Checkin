@@ -1,7 +1,7 @@
 import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
 import { GlobalStyle } from './styles/GlobalStyle';
-import CheckinPage from './pages/Checkin';
+import CheckinPage from './pages/CheckinPage';
 
 export function App() {
 

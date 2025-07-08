@@ -11,5 +11,5 @@ export const CheckinButton = styled.button`
   cursor: pointer;
   box-shadow: 0 10px 16px ${({ theme }) => theme.colors.pinkShadow};
   max-width: 18.75rem; // 300px
-  margin: 0 auto; // centers the button horizontally
+  margin: 0 auto;
 `;

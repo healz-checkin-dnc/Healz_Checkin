@@ -17,9 +17,7 @@ const Title = styled.h2`
 
 const FormBox = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
-  border-radius: 1rem;
   padding: ${({ theme }) => theme.spacing.lg};
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 1100px;
   display: flex;
@@ -40,6 +38,7 @@ const InputGroup = styled.div`
 
 const Label = styled.label`
   font-size: 0.95rem;
+  font-weight: 500;
   color: #333;
   margin-bottom: 4px;
 `;
@@ -49,9 +48,9 @@ const Input = styled.input`
   border: none;
   box-shadow: 0 6px 12px -2px ${({ theme }) => theme.colors.pinkShadow}80;
   background-color: ${({ theme }) => theme.colors.greyLight};
-  border-radius: 999px;
+  border-radius: 100px;
   font-size: 1rem;
-  outline-color: #aaaaaa;
+  outline-color: #aaa;
   &::placeholder {
     color: #aaa;
   }
@@ -60,7 +59,7 @@ const Input = styled.input`
 const CheckinForm: React.FC = () => {
   return (
     <Container>
-      <Title>Confira seus dados abaixo e preencha caso necessário</Title>
+      <Title>Confira e preencha seus dados nos campos abaixo</Title>
       <FormBox>
         <FormGrid>
           <InputGroup>
@@ -108,17 +107,16 @@ const CheckinForm: React.FC = () => {
             <Input placeholder="Digite o bairro" />
           </InputGroup>
 
-          <div></div> {/* empty cell for spacing */}
           <InputGroup>
             <Label>Cidade</Label>
             <Input placeholder="Digite a cidade" />
           </InputGroup>
 
-          <div></div>
           <InputGroup>
             <Label>Estado</Label>
             <Input placeholder="Digite o estado" />
           </InputGroup>
+          
         </FormGrid>
         <CheckinButton type="submit">Realizar Check-in</CheckinButton>
       </FormBox>
