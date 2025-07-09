@@ -20,6 +20,11 @@ export const theme = {
   fonts: {
     main: "'Helvetica Now Display', sans-serif",
   },
+  breakpoints: {
+    mobile: '480px',
+    tablet: '768px',
+    desktop: '1024px',
+  }
 };
 
 export type ThemeType = typeof theme;
