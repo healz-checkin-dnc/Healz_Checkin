@@ -20,7 +20,7 @@ async function getSheetsService() {
   return google.sheets({ version: 'v4', auth });
 }
 
-app.post('/add', async (req: Request, res: Response) => {
+app.post('/send-form', async (req: Request, res: Response) => {
   const { name, cpf, birthDate, phoneNumber, zipCode, street, complement, number, city, state } = req.body;
   try {
     const sheets = await getSheetsService();
