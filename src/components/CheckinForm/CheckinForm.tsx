@@ -87,9 +87,10 @@ type Inputs = {
 
 const CheckinForm = () => {
   const { register, handleSubmit } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const handle = new HandleSubmit()
-    handle.execute(data)
+    const response = await handle.execute(data)
+    alert(response.message)
   };
 
   return (
