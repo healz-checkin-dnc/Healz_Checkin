@@ -1,27 +1,27 @@
-const express = require('express');
-const cors = require('cors');
-const { google } = require('googleapis');
-require('dotenv').config();
+import express, { json, Request, Response } from 'express';
+import cors from 'cors';
+import { google } from 'googleapis';
+import * as dotenv from 'dotenv';
+import * as credentials from './credentials.json';
+
+dotenv.config();
 
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use(json());
 
-const credentials = require('./credentials.json');
 const spreadsheetId = process.env.SPREADSHEET_ID;
 
 async function getSheetsService() {
   const auth = new google.auth.GoogleAuth({
-    credentials,
+    credentials: credentials as any,
     scopes: ['https://www.googleapis.com/auth/spreadsheets'],
   });
   return google.sheets({ version: 'v4', auth });
 }
 
-app.post('/add', async (req, res) => {
-  const { nome, cpf, nascimento } = req.body;
-  if (!nome || !cpf) return res.status(400).json({ error: 'Nome e email são obrigatórios' });
-
+app.post('/add', async (req: Request, res: Response) => {
+  const { name, cpf, birthDate, phoneNumber, zipCode, street, complement, number, city, state } = req.body;
   try {
     const sheets = await getSheetsService();
     await sheets.spreadsheets.values.append({
@@ -29,11 +29,11 @@ app.post('/add', async (req, res) => {
       range: 'A:C',
       valueInputOption: 'RAW',
       requestBody: {
-        values: [[nome, cpf, nascimento]],
+        values: [[name, cpf, birthDate, phoneNumber, zipCode, street, complement, number, city, state]],
       },
     });
     res.status(200).json({ message: 'Dados salvos com sucesso!' });
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json({ error: err.message });
   }
 });
