@@ -10,22 +10,6 @@ This directory contains the backend server for the Healz Checkin application. It
 - [Node.js](https://nodejs.org/) (v14 or higher recommended)
 - [npm](https://www.npmjs.com/)
 
-## Setup
-
-1. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-2. **Start the server:**
-   ```bash
-   node index.js
-   ```
-   Or, if you have `nodemon` installed:
-   ```bash
-   npx nodemon index.js
-   ```
-
 ## 🚀 Subindo o Servidor Backend
 
 1. Acesse a pasta do servidor:
@@ -39,11 +23,7 @@ This directory contains the backend server for the Healz Checkin application. It
 3. Certifique-se de que o arquivo `credenciais` (com as credenciais da API do Google Sheets) está presente na raiz da pasta `server`.
 4. Inicie o servidor:
    ```bash
-   node index.js
-   ```
-   Ou, se preferir usar o nodemon para recarregar automaticamente:
-   ```bash
-   npx nodemon index.js
+   npm run dev
    ```
 
 ## Project Structure
