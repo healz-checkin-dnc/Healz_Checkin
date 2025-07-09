@@ -72,17 +72,17 @@ const CheckinForm: React.FC = () => {
           </InputGroup>
 
           <InputGroup>
-            <Label>Plano de saúde</Label>
-            <Input placeholder="Digite o plano de Saúde" />
+            <Label>CPF</Label>
+            <Input placeholder="Digite seu CPF" />
           </InputGroup>
           <InputGroup>
-            <Label>Logradouro</Label>
-            <Input placeholder="Digite a rua" />
+            <Label>Endereço</Label>
+            <Input placeholder="Digite seu endereço" />
           </InputGroup>
 
           <InputGroup>
-            <Label>Número da carteirinha</Label>
-            <Input placeholder="Digite os número da carteirinha" />
+            <Label>Data de Nascimento</Label>
+            <Input placeholder="Digite sua data de nascimento" />
           </InputGroup>
           <InputGroup>
             <Label>Número</Label>
@@ -90,21 +90,12 @@ const CheckinForm: React.FC = () => {
           </InputGroup>
 
           <InputGroup>
-            <Label>Nome do beneficiário</Label>
-            <Input placeholder="Digite o nome do beneficiário" />
+            <Label>Telefone (Whatsapp)</Label>
+            <Input placeholder="Digite seu telefone whatsapp" />
           </InputGroup>
           <InputGroup>
             <Label>Complemento</Label>
             <Input placeholder="Opcional" />
-          </InputGroup>
-
-          <InputGroup>
-            <Label>Nome da operadora</Label>
-            <Input placeholder="Digite os dados da carteirinha" />
-          </InputGroup>
-          <InputGroup>
-            <Label>Bairro</Label>
-            <Input placeholder="Digite o bairro" />
           </InputGroup>
 
           <InputGroup>
