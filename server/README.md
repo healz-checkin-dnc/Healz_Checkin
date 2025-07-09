@@ -26,6 +26,26 @@ This directory contains the backend server for the Healz Checkin application. It
    npx nodemon index.js
    ```
 
+## 🚀 Subindo o Servidor Backend
+
+1. Acesse a pasta do servidor:
+   ```bash
+   cd server
+   ```
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
+3. Certifique-se de que o arquivo `credenciais` (com as credenciais da API do Google Sheets) está presente na raiz da pasta `server`.
+4. Inicie o servidor:
+   ```bash
+   node index.js
+   ```
+   Ou, se preferir usar o nodemon para recarregar automaticamente:
+   ```bash
+   npx nodemon index.js
+   ```
+
 ## Project Structure
 - `index.js` - Main entry point for the server
 - `package.json` - Project metadata and dependencies
