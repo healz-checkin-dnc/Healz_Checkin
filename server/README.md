@@ -21,7 +21,11 @@ This directory contains the backend server for the Healz Checkin application. It
    npm install
    ```
 3. Certifique-se de que o arquivo `credenciais` (com as credenciais da API do Google Sheets) está presente na raiz da pasta `server`.
-4. Inicie o servidor:
+4. Renomeie o arquivo `.env.example` para `.env`:
+   ```bash
+   mv .env.example .env
+   ```
+5. Inicie o servidor:
    ```bash
    npm run dev
    ```
