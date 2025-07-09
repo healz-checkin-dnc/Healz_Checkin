@@ -33,6 +33,8 @@ This directory contains the backend server for the Healz Checkin application. It
 
 ## Configuration
 - Update environment variables or configuration as needed in `index.js` or via `.env` (if supported).
+- **É necessário criar o arquivo `credenciais` na raiz do projeto com as informações sensíveis para o funcionamento do servidor.**
+  - Este arquivo deve conter as credenciais da API do Google Sheets.
 
 ## License
 This project is licensed under the MIT License. 
