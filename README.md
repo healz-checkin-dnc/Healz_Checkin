@@ -27,6 +27,28 @@ npm install
 
 npm run dev
 
+---
+
+## 🚀 Subindo o Servidor Backend
+
+1. Acesse a pasta do servidor:
+   ```bash
+   cd server
+   ```
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
+3. Certifique-se de que o arquivo `credentials.json` (com as credenciais da API do Google Sheets) está presente na raiz da pasta `server`.
+4. Renomeie o arquivo `.env.example` para `.env`:
+   ```bash
+   mv .env.example .env
+   ```
+5. Inicie o servidor:
+   ```bash
+   npm run dev
+   ```
+
 ## ESLint & Prettier
 ESLint ajuda a encontrar erros e manter padrão de código.
 
