@@ -6,7 +6,7 @@ export default class HandleSubmit {
       const res = await fetch(`${HandleSubmit.API_URL}/send-form`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ input }),
+        body: JSON.stringify(input),
       });
       if (!res.ok) {
         const errorBody = await res.text();

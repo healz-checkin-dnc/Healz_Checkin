@@ -169,11 +169,11 @@ const CheckinForm = () => {
 
           <InputGroup>
             <Label htmlFor="complemento">Complemento</Label>
-            <Input id="complemento" 
-            placeholder="Opcional" 
-            {...register('complement')}
+            <Input id="complemento"
+              placeholder="Opcional"
+              {...register('complement')}
             />
-            
+
           </InputGroup>
 
           <InputGroup>
