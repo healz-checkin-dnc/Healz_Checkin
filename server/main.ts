@@ -22,6 +22,7 @@ async function getSheetsService() {
 
 app.post('/send-form', async (req: Request, res: Response) => {
   const { name, cpf, birthDate, phoneNumber, zipCode, street, complement, number, city, state } = req.body;
+  console.log(req.body)
   try {
     const sheets = await getSheetsService();
     await sheets.spreadsheets.values.append({
