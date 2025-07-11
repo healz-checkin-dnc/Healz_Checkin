@@ -4,43 +4,21 @@ export const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
     margin: 0;
     padding: 0;
-    box-sizing: inherit;
+    box-sizing: border-box;
   }
 
   html {
-    box-sizing: border-box;
-    font-size: 16px; /* base para rem */
+    font-size: 16px;
     scroll-behavior: smooth;
   }
 
   body {
-    height: 100%;
-    background-color: ${({ theme }) => theme.colors.background};
-    color: ${({ theme }) => theme.colors.text};
+    min-height: 100vh;
     font-family: ${({ theme }) => theme.fonts.main}, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased; /* Chrome, Safari, Edge (macOS) */
+    -moz-osx-font-smoothing: grayscale;  /* Firefox (macOS) */
+    text-rendering: optimizeLegibility;  /* Melhora ligaturas e kerning */
+    font-feature-settings: "liga", "kern"; /* Ajuda a suavizar tipografia */
     line-height: 1.5;
-  }
-
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  button {
-    font-family: inherit;
-    cursor: pointer;
-    border: none;
-    background: none;
-  }
-
-  ul, ol {
-    list-style: none;
-  }
-
-  img {
-    max-width: 100%;
-    display: block;
   }
 `;
