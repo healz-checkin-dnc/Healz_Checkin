@@ -1,9 +1,5 @@
 export const theme = {
   colors: {
-    primary: '#F33F90',
-    secondary: '#023E8C',
-    highlight: '#EDC0D5',
-
     greyLight: '#F9F9F9',
     white: '#FFFFFF',
     blueDark: '#010D27',
@@ -18,7 +14,12 @@ export const theme = {
     xl: '64px',
   },
   fonts: {
-    main: "'Helvetica Now Display', sans-serif",
+    main: "Helvetica Now Display, sans-serif",
+  },
+  breakpoints: {
+    mobile: '480px',
+    tablet: '768px',
+    desktop: '1024px',
   },
   breakpoints: {
     mobile: '480px',

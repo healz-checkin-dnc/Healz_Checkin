@@ -1,6 +1,8 @@
 import React from 'react';
+import { useForm, type SubmitHandler } from 'react-hook-form';
 import styled from 'styled-components';
 import { CheckinButton } from '../CheckinButton/CheckinButton';
+import HandleSubmit from '../../services/handleForm';
 
 const Container = styled.main`
   display: flex;
@@ -72,6 +74,25 @@ const Input = styled.input`
   }
 `;
 
+type Inputs = {
+  name: string;
+  cpf: string;
+  birthDate: string;
+  phoneNumber: string;
+  zipCode: string;
+  street: string;
+  complement: string;
+  number: string;
+  city: string;
+  state: string;
+};
+
+const CheckinForm = () => {
+  const { register, handleSubmit } = useForm<Inputs>();
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const handle = new HandleSubmit()
+    const response = await handle.execute(data)
+    alert(response.message)
 
 const CheckinForm = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -92,11 +113,16 @@ const CheckinForm = () => {
   return (
     <Container>
       <Title>Confira e preencha seus dados</Title>
+      <FormBox onSubmit={handleSubmit(onSubmit)}>
       <FormBox onSubmit={handleSubmit} noValidate>
         <FormGrid>
           <InputGroup>
             <Label htmlFor="nome">Nome completo</Label>
             <Input
+              id="name"
+              placeholder="Digite seu "
+              title="Digite seu  corretamente (pelo menos uma letra)"
+              {...register('name')}
               id="nome"
               name="nome"
               placeholder="Digite seu nome"
@@ -110,6 +136,9 @@ const CheckinForm = () => {
             <Label htmlFor="cep">CEP</Label>
             <Input
               id="cep"
+              placeholder="Digite o CEP"
+              title="Digite o CEP com 8 números"
+              {...register('zipCode')}
               name="cep"
               placeholder="Digite o CEP"
               required
@@ -122,6 +151,9 @@ const CheckinForm = () => {
             <Label htmlFor="cpf">CPF</Label>
             <Input
               id="cpf"
+              placeholder="Digite seu CPF"
+              title="Digite os 11 números do CPF sem ponto ou traço"
+              {...register('cpf')}
               name="cpf"
               placeholder="Digite seu CPF"
               required
@@ -134,6 +166,9 @@ const CheckinForm = () => {
             <Label htmlFor="endereco">Endereço</Label>
             <Input
               id="endereco"
+              placeholder="Digite seu endereço"
+              title="Preencha o endereço"
+              {...register('street')}
               name="endereco"
               placeholder="Digite seu endereço"
               required
@@ -145,6 +180,9 @@ const CheckinForm = () => {
             <Label htmlFor="nascimento">Data de Nascimento</Label>
             <Input
               id="nascimento"
+              type="date"
+              title="Informe a data de nascimento"
+              {...register('birthDate')}
               name="nascimento"
               type="date"
               required
@@ -156,6 +194,9 @@ const CheckinForm = () => {
             <Label htmlFor="numero">Número</Label>
             <Input
               id="numero"
+              placeholder="Digite o número"
+              title="Informe o número"
+              {...register('number')}
               name="numero"
               placeholder="Digite o número"
               required
@@ -167,6 +208,9 @@ const CheckinForm = () => {
             <Label htmlFor="telefone">Telefone (Whatsapp)</Label>
             <Input
               id="telefone"
+              placeholder="(11) 91234-5678"
+              title="Digite um telefone válido com DDD"
+              {...register('phoneNumber')}
               name="telefone"
               placeholder="(11) 91234-5678"
               required
@@ -177,6 +221,10 @@ const CheckinForm = () => {
 
           <InputGroup>
             <Label htmlFor="complemento">Complemento</Label>
+            <Input id="complemento"
+              placeholder="Opcional"
+              {...register('complement')}
+            />
             <Input id="complemento" name="complemento" placeholder="Opcional" />
           </InputGroup>
 
@@ -184,6 +232,9 @@ const CheckinForm = () => {
             <Label htmlFor="cidade">Cidade</Label>
             <Input
               id="cidade"
+              placeholder="Digite a cidade"
+              title="Use apenas letras e espaços"
+              {...register('city')}
               name="cidade"
               placeholder="Digite a cidade"
               required
@@ -196,6 +247,9 @@ const CheckinForm = () => {
             <Label htmlFor="estado">Estado</Label>
             <Input
               id="estado"
+              placeholder="Digite o estado"
+              title="Use apenas letras e espaços"
+              {...register('state')}
               name="estado"
               placeholder="Digite o estado"
               required
