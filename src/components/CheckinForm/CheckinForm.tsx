@@ -19,6 +19,7 @@ const Container = styled.main`
   }
 `;
 
+
 const Title = styled.h2`
   font-size: 1.25rem;
   color: ${({ theme }) => theme.colors.blueDark};
@@ -44,6 +45,7 @@ const FormGrid = styled.div`
     grid-template-columns: 1fr;
   }
 `;
+
 
 const InputGroup = styled.div`
   display: flex;
@@ -91,12 +93,28 @@ const CheckinForm = () => {
     const handle = new HandleSubmit()
     const response = await handle.execute(data)
     alert(response.message)
+
+const CheckinForm = () => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+
+    if (form.checkValidity()) {
+      const formData = new FormData(form);
+      const dados = Object.fromEntries(formData.entries());
+      console.log('✅ Dados válidos:', dados);
+      alert('Check-in realizado com sucesso!');
+      form.reset();
+    } else {
+      form.reportValidity();
+    }
   };
 
   return (
     <Container>
       <Title>Confira e preencha seus dados</Title>
       <FormBox onSubmit={handleSubmit(onSubmit)}>
+      <FormBox onSubmit={handleSubmit} noValidate>
         <FormGrid>
           <InputGroup>
             <Label htmlFor="nome">Nome completo</Label>
@@ -105,6 +123,12 @@ const CheckinForm = () => {
               placeholder="Digite seu "
               title="Digite seu  corretamente (pelo menos uma letra)"
               {...register('name')}
+              id="nome"
+              name="nome"
+              placeholder="Digite seu nome"
+              required
+              pattern=".*[A-Za-z]+.*"
+              title="Digite seu nome corretamente (pelo menos uma letra)"
             />
           </InputGroup>
 
@@ -115,6 +139,11 @@ const CheckinForm = () => {
               placeholder="Digite o CEP"
               title="Digite o CEP com 8 números"
               {...register('zipCode')}
+              name="cep"
+              placeholder="Digite o CEP"
+              required
+              pattern="\d{8}"
+              title="Digite o CEP com 8 números"
             />
           </InputGroup>
 
@@ -125,6 +154,11 @@ const CheckinForm = () => {
               placeholder="Digite seu CPF"
               title="Digite os 11 números do CPF sem ponto ou traço"
               {...register('cpf')}
+              name="cpf"
+              placeholder="Digite seu CPF"
+              required
+              pattern="\d{11}"
+              title="Digite os 11 números do CPF sem ponto ou traço"
             />
           </InputGroup>
 
@@ -135,6 +169,10 @@ const CheckinForm = () => {
               placeholder="Digite seu endereço"
               title="Preencha o endereço"
               {...register('street')}
+              name="endereco"
+              placeholder="Digite seu endereço"
+              required
+              title="Preencha o endereço"
             />
           </InputGroup>
 
@@ -145,6 +183,10 @@ const CheckinForm = () => {
               type="date"
               title="Informe a data de nascimento"
               {...register('birthDate')}
+              name="nascimento"
+              type="date"
+              required
+              title="Informe a data de nascimento"
             />
           </InputGroup>
 
@@ -155,6 +197,10 @@ const CheckinForm = () => {
               placeholder="Digite o número"
               title="Informe o número"
               {...register('number')}
+              name="numero"
+              placeholder="Digite o número"
+              required
+              title="Informe o número"
             />
           </InputGroup>
 
@@ -165,6 +211,11 @@ const CheckinForm = () => {
               placeholder="(11) 91234-5678"
               title="Digite um telefone válido com DDD"
               {...register('phoneNumber')}
+              name="telefone"
+              placeholder="(11) 91234-5678"
+              required
+              pattern="\(?\d{2}\)?[\s-]?\d{4,5}-?\d{4}"
+              title="Digite um telefone válido com DDD"
             />
           </InputGroup>
 
@@ -174,7 +225,7 @@ const CheckinForm = () => {
               placeholder="Opcional"
               {...register('complement')}
             />
-
+            <Input id="complemento" name="complemento" placeholder="Opcional" />
           </InputGroup>
 
           <InputGroup>
@@ -184,6 +235,11 @@ const CheckinForm = () => {
               placeholder="Digite a cidade"
               title="Use apenas letras e espaços"
               {...register('city')}
+              name="cidade"
+              placeholder="Digite a cidade"
+              required
+              pattern="^[A-Za-zÀ-ú\s]+$"
+              title="Use apenas letras e espaços"
             />
           </InputGroup>
 
@@ -194,6 +250,11 @@ const CheckinForm = () => {
               placeholder="Digite o estado"
               title="Use apenas letras e espaços"
               {...register('state')}
+              name="estado"
+              placeholder="Digite o estado"
+              required
+              pattern="^[A-Za-zÀ-ú\s]+$"
+              title="Use apenas letras e espaços"
             />
           </InputGroup>
         </FormGrid>
