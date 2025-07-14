@@ -24,7 +24,7 @@ const ecgAnimation = keyframes`
 const ECGContainer = styled.div`
   position: fixed;
   inset: 0;
-  background: black;
+  background: #010D27;
   display: flex;
   align-items: center;
   justify-content: center;
