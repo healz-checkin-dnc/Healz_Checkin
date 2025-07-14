@@ -9,7 +9,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:@typescript-eslint/recommended',
-    'prettier', // Sempre por último!
+    'prettier',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -21,8 +21,7 @@ module.exports = {
   },
   plugins: ['react', 'jsx-a11y', '@typescript-eslint'],
   rules: {
-    // aqui você pode customizar as regras
-    'react/react-in-jsx-scope': 'off', // desnecessário com Vite/React 17+
+    'react/react-in-jsx-scope': 'off',
   },
   settings: {
     react: {
