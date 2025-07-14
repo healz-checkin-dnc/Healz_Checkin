@@ -20,7 +20,12 @@ export const theme = {
     mobile: '480px',
     tablet: '768px',
     desktop: '1024px',
+<<<<<<< HEAD
   }, 
 } as const;
+=======
+  }
+};
+>>>>>>> b84780bda6b4cce858b5ae4b340cce9812231cc3
 
 export type ThemeType = typeof theme;

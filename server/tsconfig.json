@@ -7,7 +7,9 @@
       "es2024",
       "ESNext.Array",
       "ESNext.Collection",
-      "ESNext.Iterator"
+      "ESNext.Iterator",
+      "dom",
+      "dom.iterable"
     ],
     "module": "nodenext",
     "target": "es2022",

@@ -1,8 +1,8 @@
 import { useForm, type SubmitHandler } from 'react-hook-form';
+import { useMemo } from 'react';
 import { CheckinButton } from '../CheckinButton/CheckinButton';
 import HandleSubmit from '../../services/handleForm';
 
-// Styled components for CheckinForm
 import {
   Container,
   Title,
@@ -26,8 +26,16 @@ type Inputs = {
   state: string;
 };
 
-const CheckinForm = () => {
-  const { register, handleSubmit } = useForm<Inputs>();
+type Props = {
+  prefillData: Inputs;
+};
+
+const CheckinForm = ({ prefillData }: Props) => {
+  const memoizedDefaults = useMemo(() => prefillData, [prefillData]);
+  const { register, handleSubmit } = useForm<Inputs>({
+    defaultValues: memoizedDefaults,
+  });
+
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const handle = new HandleSubmit();
@@ -45,7 +53,6 @@ const CheckinForm = () => {
             <Input
               id="name"
               placeholder="Digite seu nome"
-              title="Digite seu nome corretamente (pelo menos uma letra)"
               {...register('name')}
             />
           </InputGroup>
@@ -55,7 +62,6 @@ const CheckinForm = () => {
             <Input
               id="zipCode"
               placeholder="Digite o CEP"
-              title="Digite o CEP com 8 números"
               {...register('zipCode')}
             />
           </InputGroup>
@@ -65,7 +71,6 @@ const CheckinForm = () => {
             <Input
               id="cpf"
               placeholder="Digite seu CPF"
-              title="Digite os 11 números do CPF sem ponto ou traço"
               {...register('cpf')}
             />
           </InputGroup>
@@ -75,7 +80,6 @@ const CheckinForm = () => {
             <Input
               id="street"
               placeholder="Digite seu endereço"
-              title="Preencha o endereço"
               {...register('street')}
             />
           </InputGroup>
@@ -85,7 +89,6 @@ const CheckinForm = () => {
             <Input
               id="birthDate"
               type="date"
-              title="Informe a data de nascimento"
               {...register('birthDate')}
             />
           </InputGroup>
@@ -95,7 +98,6 @@ const CheckinForm = () => {
             <Input
               id="number"
               placeholder="Digite o número"
-              title="Informe o número"
               {...register('number')}
             />
           </InputGroup>
@@ -105,7 +107,6 @@ const CheckinForm = () => {
             <Input
               id="phoneNumber"
               placeholder="(11) 91234-5678"
-              title="Digite um telefone válido com DDD"
               {...register('phoneNumber')}
             />
           </InputGroup>
@@ -124,7 +125,6 @@ const CheckinForm = () => {
             <Input
               id="city"
               placeholder="Digite a cidade"
-              title="Use apenas letras e espaços"
               {...register('city')}
             />
           </InputGroup>
@@ -134,7 +134,6 @@ const CheckinForm = () => {
             <Input
               id="state"
               placeholder="Digite o estado"
-              title="Use apenas letras e espaços"
               {...register('state')}
             />
           </InputGroup>
