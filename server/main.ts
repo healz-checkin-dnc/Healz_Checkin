@@ -19,6 +19,26 @@ async function getSheetsService() {
   });
   return google.sheets({ version: 'v4', auth });
 }
+app.get('/fetch-user', async (req: Request, res: Response) => {
+  const token = req.query.token;
+
+  if (token === 'abc123') {
+    res.json({
+      name: 'Maria Teste',
+      cpf: '12345678900',
+      birthDate: '1990-01-01',
+      phoneNumber: '11999999999',
+      zipCode: '12345678',
+      street: 'Rua Fictícia',
+      complement: '',
+      number: '123',
+      city: 'São Paulo',
+      state: 'SP',
+    });
+  } else {
+    res.status(404).json({ error: 'Token inválido' });
+  }
+});
 
 app.post('/send-form', async (req: Request, res: Response) => {
   const { name, cpf, birthDate, phoneNumber, zipCode, street, complement, number, city, state } = req.body;
