@@ -1,30 +1,37 @@
-// src/components/ECGWaveRepeat.tsx
 import { useEffect, useState } from 'react';
-
-// Styled Components
 import {
-  ecgAnimation,
   ECGContainer,
   AnimatedPath,
-} from "../../styles/Preloader.style"
+} from "../../styles/Preloader.style";
 
-export default function ECGWaveRepeat() {
+type PreloaderProps = {
+  onFinish: () => void;
+};
+
+export default function Preloader({ onFinish }: PreloaderProps) {
   const [cycles, setCycles] = useState(0);
   const [active, setActive] = useState(true);
+  const [visible, setVisible] = useState(true); // controla o fade
 
   useEffect(() => {
-    if (cycles < 3) {
+    if (cycles < 1) {
       setActive(true);
       const timeout = setTimeout(() => {
-        setActive(false); // pausa
+        setActive(false);
         setCycles((prev) => prev + 1);
-      }, 2000); // duração da animação
+      }, 2000);
+      return () => clearTimeout(timeout);
+    } else {
+      setVisible(false); // inicia fade-out
+      const timeout = setTimeout(() => {
+        onFinish(); // só finaliza após o fade-out
+      }, 1000); // tempo da transição
       return () => clearTimeout(timeout);
     }
-  }, [cycles]);
+  }, [cycles, onFinish]);
 
   return (
-    <ECGContainer>
+    <ECGContainer isVisible={visible}>
       <svg viewBox="0 0 180 80" width="320">
         <AnimatedPath
           active={active}

@@ -19,13 +19,18 @@ export const ecgAnimation = keyframes`
   }
 `;
 
-export const ECGContainer = styled.div`
+export const ECGContainer = styled.div<{ isVisible: boolean }>`
   position: fixed;
   inset: 0;
   background: #010D27;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
+  transition: opacity 1s ease-in-out;
+  pointer-events: none;
+  z-index: 9999;
 `;
 
 export const AnimatedPath = styled.path<{ active: boolean }>`

@@ -9,8 +9,8 @@ export const FooterContainer = styled.footer`
   flex-wrap: wrap;
 
   @media (max-width: 600px) {
-    flex-direction: column;
-    text-align: center;
+    flex-direction: column; 
+ 07477111   text-align: center;
     gap: 1rem;
   }
 `;
