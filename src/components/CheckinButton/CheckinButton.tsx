@@ -15,16 +15,16 @@ export const CheckinButton = styled.button`
   overflow: hidden;
   transition: all 0.3s ease;
   box-shadow: 0 10px 16px ${({ theme }) => theme.colors.pinkShadow};
-  width: 100%;  // deixa ocupar 100% do container no mobile
+  width: 100%; // deixa ocupar 100% do container no mobile
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     top: -50%;
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle at center, rgba(255,255,255,0.15), transparent 70%);
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15), transparent 70%);
     transform: rotate(45deg);
     transition: opacity 0.4s ease;
     opacity: 0;
@@ -34,7 +34,7 @@ export const CheckinButton = styled.button`
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 14px 22px ${({ theme }) => theme.colors.pinkShadow};
-    
+
     &::before {
       opacity: 1;
     }
