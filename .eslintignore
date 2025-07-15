@@ -1,5 +1,9 @@
+# Dependências
 node_modules/
+
+# Builds
 dist/
 build/
+
+# Arquivo de ambiente
 .env
-vite.config.ts
