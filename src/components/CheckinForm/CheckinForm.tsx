@@ -36,7 +36,6 @@ const CheckinForm = ({ prefillData }: Props) => {
     defaultValues: memoizedDefaults,
   });
 
-
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const handle = new HandleSubmit();
     const response = await handle.execute(data);
@@ -50,92 +49,52 @@ const CheckinForm = ({ prefillData }: Props) => {
         <FormGrid>
           <InputGroup>
             <Label htmlFor="name">Nome completo</Label>
-            <Input
-              id="name"
-              placeholder="Digite seu nome"
-              {...register('name')}
-            />
+            <Input id="name" placeholder="Digite seu nome" {...register('name')} />
           </InputGroup>
 
           <InputGroup>
             <Label htmlFor="zipCode">CEP</Label>
-            <Input
-              id="zipCode"
-              placeholder="Digite o CEP"
-              {...register('zipCode')}
-            />
+            <Input id="zipCode" placeholder="Digite o CEP" {...register('zipCode')} />
           </InputGroup>
 
           <InputGroup>
             <Label htmlFor="cpf">CPF</Label>
-            <Input
-              id="cpf"
-              placeholder="Digite seu CPF"
-              {...register('cpf')}
-            />
+            <Input id="cpf" placeholder="Digite seu CPF" {...register('cpf')} />
           </InputGroup>
 
           <InputGroup>
             <Label htmlFor="street">Endereço</Label>
-            <Input
-              id="street"
-              placeholder="Digite seu endereço"
-              {...register('street')}
-            />
+            <Input id="street" placeholder="Digite seu endereço" {...register('street')} />
           </InputGroup>
 
           <InputGroup>
             <Label htmlFor="birthDate">Data de Nascimento</Label>
-            <Input
-              id="birthDate"
-              type="date"
-              {...register('birthDate')}
-            />
+            <Input id="birthDate" type="date" {...register('birthDate')} />
           </InputGroup>
 
           <InputGroup>
             <Label htmlFor="number">Número</Label>
-            <Input
-              id="number"
-              placeholder="Digite o número"
-              {...register('number')}
-            />
+            <Input id="number" placeholder="Digite o número" {...register('number')} />
           </InputGroup>
 
           <InputGroup>
             <Label htmlFor="phoneNumber">Telefone (Whatsapp)</Label>
-            <Input
-              id="phoneNumber"
-              placeholder="(11) 91234-5678"
-              {...register('phoneNumber')}
-            />
+            <Input id="phoneNumber" placeholder="(11) 91234-5678" {...register('phoneNumber')} />
           </InputGroup>
 
           <InputGroup>
             <Label htmlFor="complement">Complemento</Label>
-            <Input
-              id="complement"
-              placeholder="Opcional"
-              {...register('complement')}
-            />
+            <Input id="complement" placeholder="Opcional" {...register('complement')} />
           </InputGroup>
 
           <InputGroup>
             <Label htmlFor="city">Cidade</Label>
-            <Input
-              id="city"
-              placeholder="Digite a cidade"
-              {...register('city')}
-            />
+            <Input id="city" placeholder="Digite a cidade" {...register('city')} />
           </InputGroup>
 
           <InputGroup>
             <Label htmlFor="state">Estado</Label>
-            <Input
-              id="state"
-              placeholder="Digite o estado"
-              {...register('state')}
-            />
+            <Input id="state" placeholder="Digite o estado" {...register('state')} />
           </InputGroup>
         </FormGrid>
 
