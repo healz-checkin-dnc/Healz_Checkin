@@ -2,7 +2,7 @@ import darkLogo from '../../assets/darkLogo.svg';
 import { FaInstagram, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa';
 
 // Styled components do Footer
-import  {
+import {
   FooterContainer,
   Logo,
   SocialList,
@@ -10,7 +10,7 @@ import  {
   IconWrapper,
   InfoText,
   CopyrightBar,
-} from "../../styles/Footer.styles";
+} from '../../styles/Footer.styles';
 
 export default function Footer() {
   return (
@@ -19,8 +19,8 @@ export default function Footer() {
         <div>
           <Logo src={darkLogo} alt="Healz Logo" />
           <InfoText>
-            contato@healz.com.br<br />
-            Atendimento: Seg a Sex, 9h - 18h
+            R. Dr. Ovídio Pires de Campos, 225 <br />
+            Cerqueira César, São Paulo - SP, 05403-010
           </InfoText>
         </div>
 
@@ -28,30 +28,30 @@ export default function Footer() {
           <SocialList>
             <SocialItem>
               <IconWrapper
-                href="https://www.linkedin.com"
+                href="https://www.linkedin.com/company/healzmarketing/"
                 aria-label="Linkedin da Healz"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer nofollow"
               >
                 <FaLinkedinIn />
               </IconWrapper>
             </SocialItem>
             <SocialItem>
               <IconWrapper
-                href="https://www.instagram.com/vannucci.021/"
+                href="https://www.instagram.com/healzmkt/"
                 aria-label="Instagram da Healz"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer nofollow"
               >
                 <FaInstagram />
               </IconWrapper>
             </SocialItem>
             <SocialItem>
               <IconWrapper
-                href="https://wa.me/5521994686556"
+                href="https://wa.me/5511917448546"
                 aria-label="WhatsApp da Healz"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer nofollow"
               >
                 <FaWhatsapp />
               </IconWrapper>
@@ -60,9 +60,7 @@ export default function Footer() {
         </nav>
       </FooterContainer>
 
-      <CopyrightBar>
-        © 2025. Todos os direitos reservados Healz.
-      </CopyrightBar>
+      <CopyrightBar>© 2025. Todos os direitos reservados Healz.</CopyrightBar>
     </>
   );
 }
