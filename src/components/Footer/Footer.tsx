@@ -1,66 +1,58 @@
-import darkLogo from '../../assets/darkLogo.svg';
-import { FaInstagram, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa';
+import React from 'react';
+import { FooterContainer, Logo, SocialList, SocialItem, IconWrapper, InfoText, CopyrightBar } from '../../styles/Footer.styles';
+import { FaInstagram, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa'; // Ícones de redes sociais
 
-// Styled components do Footer
-import {
-  FooterContainer,
-  Logo,
-  SocialList,
-  SocialItem,
-  IconWrapper,
-  InfoText,
-  CopyrightBar,
-} from '../../styles/Footer.styles';
-
-export default function Footer() {
+// Componente Footer com a estrutura e os componentes estilizados
+const Footer = () => {
   return (
-    <>
-      <FooterContainer>
-        <div>
-          <Logo src={darkLogo} alt="Healz Logo" />
-          <InfoText>
-            R. Dr. Ovídio Pires de Campos, 225 <br />
-            Cerqueira César, São Paulo - SP, 05403-010
-          </InfoText>
-        </div>
+    <FooterContainer>
+      <div>
+        <Logo src="./src/assets/darkLogo.svg" alt="Logo" />
+        <InfoText>
+          R. Dr. Ovídio Pires de Campos, 225 <br />
+          Cerqueira César, São Paulo - SP, 05403-010
+        </InfoText>
+      </div>
 
-        <nav aria-label="Redes sociais da Healz">
-          <SocialList>
-            <SocialItem>
-              <IconWrapper
-                href="https://www.linkedin.com/company/healzmarketing/"
-                aria-label="Linkedin da Healz"
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-              >
-                <FaLinkedinIn />
-              </IconWrapper>
-            </SocialItem>
-            <SocialItem>
-              <IconWrapper
-                href="https://www.instagram.com/healzmkt/"
-                aria-label="Instagram da Healz"
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-              >
-                <FaInstagram />
-              </IconWrapper>
-            </SocialItem>
-            <SocialItem>
-              <IconWrapper
-                href="https://wa.me/5511917448546"
-                aria-label="WhatsApp da Healz"
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-              >
-                <FaWhatsapp />
-              </IconWrapper>
-            </SocialItem>
-          </SocialList>
-        </nav>
-      </FooterContainer>
+      <nav aria-label="Redes sociais da Healz">
+        <SocialList>
+          <SocialItem>
+            <IconWrapper
+              href="https://www.linkedin.com/company/healzmarketing/"
+              aria-label="Linkedin da Healz"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+            >
+              <FaLinkedinIn />
+            </IconWrapper>
+          </SocialItem>
+          <SocialItem>
+            <IconWrapper
+              href="https://www.instagram.com/healzmkt/"
+              aria-label="Instagram da Healz"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+            >
+              <FaInstagram />
+            </IconWrapper>
+          </SocialItem>
+          <SocialItem>
+            <IconWrapper
+              href="https://wa.me/5511917448546"
+              aria-label="WhatsApp da Healz"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+            >
+              <FaWhatsapp />
+            </IconWrapper>
+          </SocialItem>
+        </SocialList>
+      </nav>
 
       <CopyrightBar>© 2025. Todos os direitos reservados Healz.</CopyrightBar>
-    </>
+    </FooterContainer>
   );
-}
+};
+
+// Exportação padrão
+export default Footer;

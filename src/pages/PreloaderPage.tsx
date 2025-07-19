@@ -2,27 +2,29 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { keyframes, css } from 'styled-components';
 
-// Animação de onda ECG (desenhar e apagar da esquerda para a direita)
+// Animação de onda ECG (desenho da linha da esquerda para a direita e apagamento da esquerda para a direita)
 const waveAnimation = keyframes`
   0% {
     stroke-dasharray: 0, 100;
     stroke-dashoffset: 0;
   }
-  25% {
-    stroke-dasharray: 100, 100;
-    stroke-dashoffset: 0;
-  }
   50% {
-    stroke-dasharray: 100, 100;
-    stroke-dashoffset: -100;
-  }
-  75% {
     stroke-dasharray: 100, 100;
     stroke-dashoffset: 0;
   }
   100% {
-    stroke-dasharray: 0, 100;
-    stroke-dashoffset: 100;
+    stroke-dasharray: 100, 100;
+    stroke-dashoffset: -100;
+  }
+`;
+
+// Animação de fade-out para quando a tela for trocada
+const fadeOut = keyframes`
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 `;
 
@@ -37,7 +39,7 @@ const ECGContainer = styled.div<{ $fadeOut: boolean }>`
   padding: 0;
   margin: 0;
   opacity: 1;
-  animation: ${(props) => (props.$fadeOut ? css`${fadeOut} 2s forwards` : 'none')}; /* Aplica o fade-out quando ativado */
+  animation: ${(props) => (props.$fadeOut ? css`${fadeOut} 1s forwards` : 'none')}; /* Aplica o fade-out quando ativado */
 `;
 
 // Estilo para o SVG
@@ -50,20 +52,11 @@ const HeartbeatSVG = styled.svg`
   stroke-linejoin: round;
 `;
 
-// Estilo para o path com animação
+// Estilo para o path com animação de batimento cardíaco
 const HeartbeatPath = styled.path`
-  stroke-dasharray: 300;
-  stroke-dashoffset: 300;
-  animation: ${waveAnimation} 2s infinite linear; /* Animação de batimento */
-`;
-
-const fadeOut = keyframes`
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+  stroke-dasharray: 100; /* O comprimento da linha */
+  stroke-dashoffset: 100; /* Começa a linha invisível */
+  animation: ${waveAnimation} 1s ease-in-out 3; /* A animação ocorre 3 vezes em 1 segundo */
 `;
 
 export default function PreloaderPage() {
@@ -77,7 +70,7 @@ export default function PreloaderPage() {
       // Após o fade-out, redireciona para a tela de Checkin
       setTimeout(() => {
         navigate('/checkin');
-      }, 2000); // Duração do fade-out
+      }, 1000); // Duração do fade-out
     }, 3000); // Espera 3 segundos antes de ativar o fade-out
 
     return () => clearTimeout(timeout);
