@@ -1,12 +1,14 @@
 import { styled } from 'styled-components';
 
 export const FooterContainer = styled.footer`
+  width: 100%;  /* Garante que o footer ocupe 100% da largura da tela */
   background-color: ${({ theme }) => theme.colors.grayLight};
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.lg};
   flex-wrap: wrap;
+  box-sizing: border-box;  /* Para garantir que o padding não afete a largura total */
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     flex-direction: column;
@@ -71,10 +73,12 @@ export const InfoText = styled.p`
 `;
 
 export const CopyrightBar = styled.div`
+  width: 100%; /* Garantir que a barra de copyright ocupe a largura toda */
   background-color: ${({ theme }) => theme.colors.healzPink};
   color: ${({ theme }) => theme.colors.white};
   text-align: center;
   font-size: 0.875rem;
   padding: ${({ theme }) => theme.spacing.sm};
   margin-top: ${({ theme }) => theme.spacing.md};
+  box-sizing: border-box;  /* Garantir que o padding não afete a largura total */
 `;

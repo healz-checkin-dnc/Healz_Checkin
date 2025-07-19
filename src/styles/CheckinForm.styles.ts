@@ -5,6 +5,7 @@ export const Container = styled.main`
   flex-direction: column;
   align-items: center;
   padding: ${({ theme }) => theme.spacing.lg};
+  width: 100%;  /* Garante que o contêiner ocupe a largura total */
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     padding: ${({ theme }) => theme.spacing.md};
@@ -25,13 +26,18 @@ export const Title = styled.h2`
 export const FormBox = styled.form`
   background-color: ${({ theme }) => theme.colors.white};
   padding: ${({ theme }) => theme.spacing.lg};
-  width: 100%;
-  max-width: 1100px;
+  width: 100%;  /* Garante que o formulário ocupe a largura total */
+  max-width: 1100px;  /* Define um limite máximo de largura */
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing.lg};
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(243, 63, 144, 0.15);
+  margin: 0 auto;  /* Centraliza o formulário horizontalmente */
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: ${({ theme }) => theme.spacing.sm};  /* Reduz o padding em telas pequenas */
+  }
 `;
 
 export const FormGrid = styled.div`
@@ -40,7 +46,7 @@ export const FormGrid = styled.div`
   gap: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.xl};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr;  /* Muda para coluna única em telas menores */
   }
 `;
 
@@ -57,7 +63,7 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  width: 100%;
+  width: 100%;  /* Garante que o input ocupe 100% da largura disponível */
   padding: 12px 16px;
   border: none;
   box-shadow: 0 6px 12px -2px ${({ theme }) => theme.colors.pinkShadow}80;
@@ -73,4 +79,12 @@ export const Input = styled.input`
   &:focus {
     box-shadow: 0 0 0 3px ${({ theme }) => theme.colors.healzPink}88;
   }
+`;
+
+export const ErrorMessage = styled.span`
+  color: #f35ca2;
+  font-size: 0.875rem;
+  margin-top: 4px;
+  display: block; /* Faz a mensagem ocupar uma linha inteira */
+  margin-bottom: 10px;
 `;
