@@ -1,17 +1,25 @@
+import { useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
 import { GlobalStyle } from './styles/GlobalStyle';
-import { Routes, Route, Navigate } from 'react-router-dom';
 import CheckinPage from './pages/CheckinPage';
+import Preloader from './components/Preloader/Preloader'; // importamos o loader aqui
 
 export function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000); // tempo do loader em milissegundos
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Routes>
-        <Route path="/" element={<Navigate to="/checkin" replace />} />
-        <Route path="/checkin" element={<CheckinPage />} />
-      </Routes>
+      {loading ? <Preloader /> : <CheckinPage />}
     </ThemeProvider>
   );
 }
