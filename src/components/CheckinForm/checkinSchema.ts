@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const checkinSchema = z.object({
+export const CheckinSchema = z.object({
   name: z.string().min(3, 'Nome deve ter pelo menos 3 caracteres'),
   cpf: z.string().regex(/^\d{11}$/, 'CPF deve conter exatamente 11 dígitos'),
   birthDate: z.string().refine((date) => !isNaN(Date.parse(date)), {
@@ -15,4 +15,4 @@ export const checkinSchema = z.object({
   state: z.string().min(2, 'Estado obrigatório'),
 });
 
-export type CheckinSchemaType = z.infer<typeof checkinSchema>;
+export type CheckinSchemaType = z.infer<typeof CheckinSchema>;

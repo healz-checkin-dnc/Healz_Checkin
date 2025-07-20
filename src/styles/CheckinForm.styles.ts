@@ -77,6 +77,7 @@ export const Input = styled.input`
 
 // Mensagem de erro na validação do form
 export const ErrorMessage = styled.span`
+  text-align: center;
   color: #e63946;
   font-size: 0.875rem;
   margin-top: 4px;

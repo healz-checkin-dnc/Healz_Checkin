@@ -1,7 +1,9 @@
+import { CheckinSchemaType } from '../components/CheckinForm/checkinSchema';
+
 export default class HandleSubmit {
   private static API_URL = 'http://localhost:3001';
 
-  async execute(input: Input): Promise<any> {
+  async execute(input: CheckinSchemaType): Promise<any> {
     try {
       const res = await fetch(`${HandleSubmit.API_URL}/send-form`, {
         method: 'POST',
@@ -18,16 +20,3 @@ export default class HandleSubmit {
     }
   }
 }
-
-export type Input = {
-  name: string;
-  cpf: string;
-  birthDate: string;
-  phoneNumber: string;
-  zipCode: string;
-  street: string;
-  complement: string;
-  number: string;
-  city: string;
-  state: string;
-};
