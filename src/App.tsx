@@ -8,7 +8,6 @@ export function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-
       <Routes>
         <Route path="/" element={<Navigate to="/checkin" replace />} />
         <Route path="/checkin" element={<CheckinPage />} />
