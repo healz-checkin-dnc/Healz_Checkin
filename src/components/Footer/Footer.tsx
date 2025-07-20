@@ -1,4 +1,4 @@
-import darkLogo from '../../assets/darkLogo.svg';
+import darkLogo from '../../assets/darkLogo.png';
 import { FaInstagram, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa';
 
 // Footer.style.tx
