@@ -1,7 +1,8 @@
 import { useForm, type SubmitHandler } from 'react-hook-form';
-import { useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { CheckinButton } from '../CheckinButton/CheckinButton';
 import HandleSubmit from '../../services/handleForm';
+import { FaSignInAlt, FaSpinner } from 'react-icons/fa'; // Icone de SingIn e Loading no Botão
 
 import {
   Container,
@@ -31,15 +32,24 @@ type Props = {
 };
 
 const CheckinForm = ({ prefillData }: Props) => {
+  const [loading, setLoading] = useState(false);
+
   const memoizedDefaults = useMemo(() => prefillData, [prefillData]);
   const { register, handleSubmit } = useForm<Inputs>({
     defaultValues: memoizedDefaults,
   });
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    setLoading(true);
     const handle = new HandleSubmit();
-    const response = await handle.execute(data);
-    alert(response.message);
+    try {
+      const response = await handle.execute(data);
+      alert(response.message);
+    } catch (error) {
+      alert('Erro ao fazer check-in.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -98,7 +108,19 @@ const CheckinForm = ({ prefillData }: Props) => {
           </InputGroup>
         </FormGrid>
 
-        <CheckinButton type="submit">Realizar Check-in</CheckinButton>
+        <CheckinButton type="submit" disabled={loading} aria-label="Fazer check-in">
+          {loading ? (
+            <>
+              <FaSpinner className="spinner" style={{ marginRight: '8px' }} />
+              Carregando...
+            </>
+          ) : (
+            <>
+              <FaSignInAlt style={{ marginRight: '8px' }} />
+              Realizar Check-in
+            </>
+          )}
+        </CheckinButton>
       </FormBox>
     </Container>
   );
