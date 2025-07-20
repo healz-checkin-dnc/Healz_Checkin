@@ -3,19 +3,19 @@ import styled, { keyframes, css } from 'styled-components';
 export const ecgAnimation = keyframes`
   0% {
     stroke-dashoffset: 800;
-    opacity: 0.3;
+    opacity: 1;  /* Inicia com opacidade 1 */
   }
   40% {
     stroke-dashoffset: 0;
-    opacity: 1;
+    opacity: 1;  /* No meio da animação, ainda visível */
   }
   70% {
     stroke-dashoffset: 800;
-    opacity: 0.6;
+    opacity: 1;  /* Finaliza com opacidade ainda visível */
   }
   100% {
     stroke-dashoffset: 800;
-    opacity: 0.3;
+    opacity: 0;  /* Fade-out, a opacidade chega a 0 */
   }
 `;
 
@@ -28,7 +28,7 @@ export const ECGContainer = styled.div`
   justify-content: center;
 `;
 
-export const AnimatedPath = styled.path<{ active: boolean }>`
+export const AnimatedPath = styled.path<{ active: boolean; fadeOut: boolean }>`
   stroke: #F33F90;
   stroke-width: 4;
   fill: none;
@@ -36,9 +36,17 @@ export const AnimatedPath = styled.path<{ active: boolean }>`
   stroke-linejoin: round;
   stroke-dasharray: 800;
   stroke-dashoffset: 800;
+
   ${({ active }) =>
     active &&
     css`
-      animation: ${ecgAnimation} 2s ease-in-out forwards;
+      animation: ${ecgAnimation} 3s ease-in-out forwards; /* Animação durando 3 segundos */
+    `}
+
+  ${({ fadeOut }) =>
+    fadeOut &&
+    css`
+      opacity: 0; /* Controla o fade-out */
+      transition: opacity 2s ease-out; /* Transition suave para fade-out */
     `}
 `;

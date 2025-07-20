@@ -1,12 +1,6 @@
-// src/components/ECGWaveRepeat.tsx
+// ECGWaveRepeat.tsx
 import { useEffect, useState } from 'react';
-
-// Styled Components
-import {
-  ecgAnimation,
-  ECGContainer,
-  AnimatedPath,
-} from "../../styles/Preloader.style"
+import { ECGContainer, AnimatedPath } from '../../styles/Preloader.style'; // Importando os estilos
 
 export default function ECGWaveRepeat() {
   const [cycles, setCycles] = useState(0);
@@ -16,9 +10,9 @@ export default function ECGWaveRepeat() {
     if (cycles < 3) {
       setActive(true);
       const timeout = setTimeout(() => {
-        setActive(false); // pausa
+        setActive(false); // Pausa
         setCycles((prev) => prev + 1);
-      }, 2000); // duração da animação
+      }, 6000); // Duração da animação
       return () => clearTimeout(timeout);
     }
   }, [cycles]);
