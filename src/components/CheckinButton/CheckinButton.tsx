@@ -1,4 +1,9 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const spin = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+`;
 
 export const CheckinButton = styled.button`
   background: linear-gradient(135deg, ${({ theme }) => theme.colors.healzPink} 0%, #ff69b4 100%);
@@ -9,13 +14,13 @@ export const CheckinButton = styled.button`
   font-weight: bold;
   font-size: 1.25rem;
   cursor: pointer;
-  max-width: 18.75rem; // 300px
+  max-width: 18.75rem; /* 300px */
   margin: 40px auto 0;
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
   box-shadow: 0 10px 16px ${({ theme }) => theme.colors.pinkShadow};
-  width: 100%; // deixa ocupar 100% do container no mobile
+  width: 100%;
 
   &::before {
     content: '';
@@ -26,7 +31,7 @@ export const CheckinButton = styled.button`
     height: 200%;
     background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15), transparent 70%);
     transform: rotate(45deg);
-    transition: opacity 0.4s ease;
+    transition: opacity 0.4s ease, transform 0.4s ease;
     opacity: 0;
     pointer-events: none;
   }
@@ -45,9 +50,24 @@ export const CheckinButton = styled.button`
     box-shadow: 0 6px 12px ${({ theme }) => theme.colors.pinkShadow};
   }
 
+  &:focus-visible {
+    outline: 3px solid ${({ theme }) => theme.colors.healzPink};
+    outline-offset: 4px;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  svg.spinner {
+    animation: ${spin} 1s linear infinite;
+  }
+
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     font-size: 1rem;
-    padding: 12px 24px;
-    max-width: 100%; // libera para preencher container no mobile
+    padding: 14px 24px;
+    min-height: 44px;
+    max-width: 100%;
   }
 `;
