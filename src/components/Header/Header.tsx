@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../../assets/logo.svg';
 
-// Style
+// Header.style.tx
 import { HeaderContainer, Logo, Title, RightSpace } from '../../styles/Header.style';
 
 const Header: React.FC = () => (
