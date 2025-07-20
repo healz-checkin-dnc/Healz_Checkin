@@ -1,34 +1,38 @@
+// Preloader.style.ts
 import styled, { keyframes, css } from 'styled-components';
 
+// Animação de ECG
 export const ecgAnimation = keyframes`
   0% {
     stroke-dashoffset: 800;
-    opacity: 1;  /* Inicia com opacidade 1 */
+    opacity: 0.3;
   }
   40% {
     stroke-dashoffset: 0;
-    opacity: 1;  /* No meio da animação, ainda visível */
+    opacity: 1;
   }
   70% {
     stroke-dashoffset: 800;
-    opacity: 1;  /* Finaliza com opacidade ainda visível */
+    opacity: 0.6;
   }
   100% {
     stroke-dashoffset: 800;
-    opacity: 0;  /* Fade-out, a opacidade chega a 0 */
+    opacity: 0.3;
   }
 `;
 
+// Container do ECG (preloader)
 export const ECGContainer = styled.div`
   position: fixed;
   inset: 0;
-  background: #010D27;
+  background: ${({ theme }) => theme.colors.blueDark};
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-export const AnimatedPath = styled.path<{ active: boolean; fadeOut: boolean }>`
+// Path animado (onde o ECG será desenhado)
+export const AnimatedPath = styled.path<{ active: boolean }>`
   stroke: #F33F90;
   stroke-width: 4;
   fill: none;
@@ -40,13 +44,6 @@ export const AnimatedPath = styled.path<{ active: boolean; fadeOut: boolean }>`
   ${({ active }) =>
     active &&
     css`
-      animation: ${ecgAnimation} 3s ease-in-out forwards; /* Animação durando 3 segundos */
-    `}
-
-  ${({ fadeOut }) =>
-    fadeOut &&
-    css`
-      opacity: 0; /* Controla o fade-out */
-      transition: opacity 2s ease-out; /* Transition suave para fade-out */
+      animation: ${ecgAnimation} 2s ease-in-out forwards;
     `}
 `;

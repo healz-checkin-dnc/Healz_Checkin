@@ -2,8 +2,10 @@ import express, { json, Request, Response } from 'express';
 import cors from 'cors';
 import { google } from 'googleapis';
 import * as dotenv from 'dotenv';
+import * as credentials from './credenciais.json';
 import credentials from './credentials.json' with { type: "json" };
 import type { JWTInput } from 'google-auth-library';
+
 
 dotenv.config();
 

@@ -12,7 +12,7 @@ export default function ECGWaveRepeat() {
       const timeout = setTimeout(() => {
         setActive(false); // Pausa
         setCycles((prev) => prev + 1);
-      }, 6000); // Duração da animação
+      }, 3000); // Duração da animação
       return () => clearTimeout(timeout);
     }
   }, [cycles]);
