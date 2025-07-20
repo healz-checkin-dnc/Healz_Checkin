@@ -1,93 +1,36 @@
+// src/components/ECGWaveRepeat.tsx
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled, { keyframes, css } from 'styled-components';
 
-// Animação de onda ECG (desenhar e apagar da esquerda para a direita)
-const waveAnimation = keyframes`
-  0% {
-    stroke-dasharray: 0, 100;
-    stroke-dashoffset: 0;
-  }
-  25% {
-    stroke-dasharray: 100, 100;
-    stroke-dashoffset: 0;
-  }
-  50% {
-    stroke-dasharray: 100, 100;
-    stroke-dashoffset: -100;
-  }
-  75% {
-    stroke-dasharray: 100, 100;
-    stroke-dashoffset: 0;
-  }
-  100% {
-    stroke-dasharray: 0, 100;
-    stroke-dashoffset: 100;
-  }
-`;
+// Styled Components
+import {
+  ecgAnimation,
+  ECGContainer,
+  AnimatedPath,
+} from "../../styles/Preloader.style"
 
-// Estilo para o contêiner principal do ECG
-const ECGContainer = styled.div<{ $fadeOut: boolean }>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw; /* Ocupa 100% da largura da tela */
-  height: 100vh; /* Ocupa 100% da altura da tela */
-  background-color: #010D27; /* Fundo escuro */
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  animation: ${(props) => (props.$fadeOut ? css`${fadeOut} 2s forwards` : 'none')}; /* Aplica o fade-out quando ativado */
-`;
-
-// Estilo para o SVG
-const HeartbeatSVG = styled.svg`
-  width: 200px;
-  stroke: #F33F90; /* Cor rosa */
-  fill: none;
-  stroke-width: 4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-`;
-
-// Estilo para o path com animação
-const HeartbeatPath = styled.path`
-  stroke-dasharray: 300;
-  stroke-dashoffset: 300;
-  animation: ${waveAnimation} 2s infinite linear; /* Animação de batimento */
-`;
-
-const fadeOut = keyframes`
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-`;
-
-export default function PreloaderPage() {
-  const [fadeOut, setFadeOut] = useState(false);
-  const navigate = useNavigate();
+export default function ECGWaveRepeat() {
+  const [cycles, setCycles] = useState(0);
+  const [active, setActive] = useState(true);
 
   useEffect(() => {
-    // Atraso de 3 segundos para exibir a animação de batimento cardíaco
-    const timeout = setTimeout(() => {
-      setFadeOut(true);
-      // Após o fade-out, redireciona para a tela de Checkin
-      setTimeout(() => {
-        navigate('/checkin');
-      }, 2000); // Duração do fade-out
-    }, 3000); // Espera 3 segundos antes de ativar o fade-out
-
-    return () => clearTimeout(timeout);
-  }, [navigate]);
+    if (cycles < 3) {
+      setActive(true);
+      const timeout = setTimeout(() => {
+        setActive(false); // pausa
+        setCycles((prev) => prev + 1);
+      }, 2000); // duração da animação
+      return () => clearTimeout(timeout);
+    }
+  }, [cycles]);
 
   return (
-    <ECGContainer $fadeOut={fadeOut}>
-      <HeartbeatSVG viewBox="0 0 200 100">
-        <HeartbeatPath d="M 0 70 L 20 70 L 30 30 L 40 90 L 50 70 L 70 70" />
-      </HeartbeatSVG>
+    <ECGContainer>
+      <svg viewBox="0 0 180 80" width="320">
+        <AnimatedPath
+          active={active}
+          d="M0,40 H20 L30,20 L40,60 L50,10 L60,40 L70,30 L80,40 H100"
+        />
+      </svg>
     </ECGContainer>
   );
 }
