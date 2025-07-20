@@ -2,7 +2,7 @@ import express, { json, Request, Response } from 'express';
 import cors from 'cors';
 import { google } from 'googleapis';
 import * as dotenv from 'dotenv';
-import * as credentials from './credentials.json';
+import * as credentials from './credenciais.json';
 
 dotenv.config();
 
