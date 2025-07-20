@@ -74,3 +74,12 @@ export const Input = styled.input`
     box-shadow: 0 0 0 3px ${({ theme }) => theme.colors.healzPink}88;
   }
 `;
+
+// Mensagem de erro na validação do form
+export const ErrorMessage = styled.span`
+  color: #e63946;
+  font-size: 0.875rem;
+  margin-top: 4px;
+  display: block;
+  font-weight: 500;
+`;
