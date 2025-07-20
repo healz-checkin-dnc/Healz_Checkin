@@ -1,8 +1,8 @@
 import { useForm, type SubmitHandler } from 'react-hook-form';
-import { useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { CheckinButton } from '../CheckinButton/CheckinButton';
 import HandleSubmit from '../../services/handleForm';
-import { FaSignInAlt, FaSpinner } from 'react-icons/fa'; // Icone de SingIn e Loading no Botão
+import { FaSignInAlt, FaSpinner } from 'react-icons/fa';
 
 import {
   Container,
@@ -28,16 +28,31 @@ type Inputs = {
 };
 
 type Props = {
-  prefillData: Inputs;
+  token: string | null;
 };
 
-const CheckinForm = ({ prefillData }: Props) => {
+const CheckinForm = ({ token }: Props) => {
   const [loading, setLoading] = useState(false);
+  const { register, handleSubmit, setValue } = useForm<Inputs>();
 
-  const memoizedDefaults = useMemo(() => prefillData, [prefillData]);
-  const { register, handleSubmit } = useForm<Inputs>({
-    defaultValues: memoizedDefaults,
-  });
+  useEffect(() => {
+    if (!token) return;
+
+    fetch(`http://localhost:3001/fetch-user?token=${token}`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Token inválido ou expirado");
+        return res.json();
+      })
+      .then((data: Inputs) => {
+        Object.entries(data).forEach(([key, value]) => {
+          setValue(key as keyof Inputs, value);
+        });
+      })
+      .catch((err) => {
+        console.error("❌ Erro ao buscar dados:", err);
+        alert("Link inválido ou expirado. Solicite um novo check-in.");
+      });
+  }, [token, setValue]);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setLoading(true);

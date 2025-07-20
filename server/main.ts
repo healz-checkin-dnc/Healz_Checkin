@@ -2,7 +2,8 @@ import express, { json, Request, Response } from 'express';
 import cors from 'cors';
 import { google } from 'googleapis';
 import * as dotenv from 'dotenv';
-import * as credentials from './credentials.json';
+import credentials from './credentials.json' with { type: "json" };
+import type { JWTInput } from 'google-auth-library';
 
 dotenv.config();
 
@@ -14,11 +15,12 @@ const spreadsheetId = process.env.SPREADSHEET_ID;
 
 async function getSheetsService() {
   const auth = new google.auth.GoogleAuth({
-    credentials: credentials as any,
+    credentials: credentials as JWTInput,
     scopes: ['https://www.googleapis.com/auth/spreadsheets'],
   });
   return google.sheets({ version: 'v4', auth });
 }
+
 app.get('/fetch-user', async (req: Request, res: Response) => {
   const token = req.query.token;
 
@@ -30,7 +32,7 @@ app.get('/fetch-user', async (req: Request, res: Response) => {
       phoneNumber: '11999999999',
       zipCode: '12345678',
       street: 'Rua Fictícia',
-      complement: '',
+      complement: 'apto 5',
       number: '123',
       city: 'São Paulo',
       state: 'SP',
@@ -39,7 +41,6 @@ app.get('/fetch-user', async (req: Request, res: Response) => {
     res.status(404).json({ error: 'Token inválido' });
   }
 });
-
 app.post('/send-form', async (req: Request, res: Response) => {
   const { name, cpf, birthDate, phoneNumber, zipCode, street, complement, number, city, state } = req.body;
   try {
@@ -53,9 +54,13 @@ app.post('/send-form', async (req: Request, res: Response) => {
       },
     });
     res.status(200).json({ message: 'Dados salvos com sucesso!' });
-  } catch (err: any) {
+  } catch (err: unknown) {
+  if (err instanceof Error) {
     res.status(500).json({ error: err.message });
+  } else {
+    res.status(500).json({ error: 'Erro desconhecido ao enviar os dados.' });
   }
+}
 });
 
 const PORT = 3001;
