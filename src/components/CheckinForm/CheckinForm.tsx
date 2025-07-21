@@ -1,7 +1,7 @@
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { useEffect, useState, useMemo } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { CheckinSchema, type CheckinSchemaType } from './CheckinSchema';
+import { CheckinSchema, type CheckinSchemaType } from './checkinSchema';
 import { CheckinButton } from '../CheckinButton/CheckinButton';
 import HandleSubmit from '../../services/handleForm';
 import { FaSignInAlt, FaSpinner } from 'react-icons/fa';
@@ -53,6 +53,7 @@ const CheckinForm = ({ token }: Props) => {
   });
 
   useEffect(() => {
+    console.log('🔍 useEffect firing, token =', token);
     if (!token) return;
 
     fetch(`http://localhost:3001/fetch-user?token=${token}`)
@@ -61,6 +62,7 @@ const CheckinForm = ({ token }: Props) => {
         return res.json();
       })
       .then((data: CheckinSchemaType) => {
+        console.log('✅ Dados recebidos:', data);
         reset(data);
       })
       .catch((err) => {
