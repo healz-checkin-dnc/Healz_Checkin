@@ -1,10 +1,11 @@
 export const theme = {
   colors: {
-    greyLight: '#F9F9F9',
     white: '#FFFFFF',
+    grayLight: '#F9F9F9',
     blueDark: '#010D27',
     healzPink: '#F33F90',
     pinkShadow: '#EDC0D5',
+    footerInfo: '#666',
   },
   spacing: {
     xs: '4px',
@@ -14,18 +15,22 @@ export const theme = {
     xl: '64px',
   },
   fonts: {
-    main: "Helvetica Now Display, sans-serif",
+    main: 'Helvetica Now Display, sans-serif',
+  },
+  fontSizes: {
+    xs: '0.75rem', // 12px
+    sm: '0.875rem', // 14px
+    md: '1rem', // 16px
+    lg: '1.25rem', // 20px
+    xl: '2rem', // 32px
+    xxl: '3rem', // 48px
   },
   breakpoints: {
     mobile: '480px',
     tablet: '768px',
-    desktop: '1024px',
+    laptop: '1024px',
+    desktop: '1280px',
   },
-  breakpoints: {
-    mobile: '480px',
-    tablet: '768px',
-    desktop: '1024px',
-  }
-};
+} as const;
 
 export type ThemeType = typeof theme;

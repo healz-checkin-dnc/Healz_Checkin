@@ -1,266 +1,184 @@
-import React from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
-import styled from 'styled-components';
+import { useEffect, useState, useMemo } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { CheckinSchema, type CheckinSchemaType } from './checkinSchema';
 import { CheckinButton } from '../CheckinButton/CheckinButton';
 import HandleSubmit from '../../services/handleForm';
+import { FaSignInAlt, FaSpinner } from 'react-icons/fa';
 
-const Container = styled.main`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: ${({ theme }) => theme.spacing.lg};
+import {
+  Container,
+  Title,
+  FormBox,
+  FormGrid,
+  InputGroup,
+  Label,
+  Input,
+} from '../../styles/CheckinForm.styles';
 
-  @media (max-width: 768px) {
-    padding: ${({ theme }) => theme.spacing.md};
-  }
+import { ErrorMessage } from '../../styles/CheckinForm.styles';
 
-  @media (max-width: 480px) {
-    padding: ${({ theme }) => theme.spacing.sm};
-  }
-`;
-
-
-const Title = styled.h2`
-  font-size: 1.25rem;
-  color: ${({ theme }) => theme.colors.blueDark};
-  margin-bottom: ${({ theme }) => theme.spacing.md};
-`;
-
-const FormBox = styled.form`
-  background-color: ${({ theme }) => theme.colors.white};
-  padding: ${({ theme }) => theme.spacing.lg};
-  width: 100%;
-  max-width: 1100px;
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.lg};
-`;
-
-const FormGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.xl};
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-
-const InputGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Label = styled.label`
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #333;
-  margin-bottom: 4px;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  padding: 12px;
-  border: none;
-  box-shadow: 0 6px 12px -2px ${({ theme }) => theme.colors.pinkShadow}80;
-  background-color: ${({ theme }) => theme.colors.greyLight};
-  border-radius: 100px;
-  font-size: 1rem;
-  outline-color: #aaa;
-
-  &::placeholder {
-    color: #aaa;
-  }
-`;
-
-type Inputs = {
-  name: string;
-  cpf: string;
-  birthDate: string;
-  phoneNumber: string;
-  zipCode: string;
-  street: string;
-  complement: string;
-  number: string;
-  city: string;
-  state: string;
+type Props = {
+  token: string | null;
 };
 
-const CheckinForm = () => {
-  const { register, handleSubmit } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const handle = new HandleSubmit()
-    const response = await handle.execute(data)
-    alert(response.message)
+const prefillData: CheckinSchemaType = {
+  name: '',
+  cpf: '',
+  birthDate: '',
+  phoneNumber: '',
+  zipCode: '',
+  street: '',
+  complement: '',
+  number: '',
+  city: '',
+  state: '',
+};
 
-const CheckinForm = () => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
+const CheckinForm = ({ token }: Props) => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState<string | null>(null);
 
-    if (form.checkValidity()) {
-      const formData = new FormData(form);
-      const dados = Object.fromEntries(formData.entries());
-      console.log('✅ Dados válidos:', dados);
-      alert('Check-in realizado com sucesso!');
-      form.reset();
-    } else {
-      form.reportValidity();
+  const memoizedDefaults = useMemo(() => prefillData, []);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting, isValid },
+  } = useForm<CheckinSchemaType>({
+    resolver: zodResolver(CheckinSchema),
+    defaultValues: memoizedDefaults,
+    mode: 'onChange',
+  });
+
+  useEffect(() => {
+    console.log('🔍 useEffect firing, token =', token);
+    if (!token) return;
+
+    fetch(`http://localhost:3001/fetch-user?token=${token}`)
+      .then((res) => {
+        if (!res.ok) throw new Error('Token inválido ou expirado');
+        return res.json();
+      })
+      .then((data: CheckinSchemaType) => {
+        console.log('✅ Dados recebidos:', data);
+        reset(data);
+      })
+      .catch((err) => {
+        console.error('❌ Erro ao buscar dados:', err);
+        alert('Link inválido ou expirado. Solicite um novo check-in.');
+      });
+  }, [token, reset]);
+
+  const onSubmit: SubmitHandler<CheckinSchemaType> = async (data) => {
+    setSubmitMessage(null);
+    try {
+      const handle = new HandleSubmit();
+      const response = await handle.execute(data);
+      setSubmitMessage(response.message);
+      setIsSubmitted(true);
+    } catch {
+      setSubmitMessage('Erro ao fazer check-in.');
     }
   };
 
   return (
     <Container>
-      <Title>Confira e preencha seus dados</Title>
-      <FormBox onSubmit={handleSubmit(onSubmit)}>
-      <FormBox onSubmit={handleSubmit} noValidate>
-        <FormGrid>
-          <InputGroup>
-            <Label htmlFor="nome">Nome completo</Label>
-            <Input
-              id="name"
-              placeholder="Digite seu "
-              title="Digite seu  corretamente (pelo menos uma letra)"
-              {...register('name')}
-              id="nome"
-              name="nome"
-              placeholder="Digite seu nome"
-              required
-              pattern=".*[A-Za-z]+.*"
-              title="Digite seu nome corretamente (pelo menos uma letra)"
-            />
-          </InputGroup>
+      <Title>{isSubmitted ? 'Obrigado pelo seu check-in!' : 'Confira e preencha seus dados'}</Title>
 
-          <InputGroup>
-            <Label htmlFor="cep">CEP</Label>
-            <Input
-              id="cep"
-              placeholder="Digite o CEP"
-              title="Digite o CEP com 8 números"
-              {...register('zipCode')}
-              name="cep"
-              placeholder="Digite o CEP"
-              required
-              pattern="\d{8}"
-              title="Digite o CEP com 8 números"
-            />
-          </InputGroup>
+      {!isSubmitted ? (
+        <FormBox onSubmit={handleSubmit(onSubmit)} noValidate>
+          <FormGrid>
+            <InputGroup>
+              <Label htmlFor="name">Nome completo</Label>
+              <Input id="name" placeholder="Digite seu nome" {...register('name')} aria-invalid={!!errors.name} />
+              {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
+            </InputGroup>
 
-          <InputGroup>
-            <Label htmlFor="cpf">CPF</Label>
-            <Input
-              id="cpf"
-              placeholder="Digite seu CPF"
-              title="Digite os 11 números do CPF sem ponto ou traço"
-              {...register('cpf')}
-              name="cpf"
-              placeholder="Digite seu CPF"
-              required
-              pattern="\d{11}"
-              title="Digite os 11 números do CPF sem ponto ou traço"
-            />
-          </InputGroup>
+            <InputGroup>
+              <Label htmlFor="zipCode">CEP</Label>
+              <Input id="zipCode" placeholder="Digite o CEP" {...register('zipCode')} aria-invalid={!!errors.zipCode} />
+              {errors.zipCode && <ErrorMessage>{errors.zipCode.message}</ErrorMessage>}
+            </InputGroup>
 
-          <InputGroup>
-            <Label htmlFor="endereco">Endereço</Label>
-            <Input
-              id="endereco"
-              placeholder="Digite seu endereço"
-              title="Preencha o endereço"
-              {...register('street')}
-              name="endereco"
-              placeholder="Digite seu endereço"
-              required
-              title="Preencha o endereço"
-            />
-          </InputGroup>
+            <InputGroup>
+              <Label htmlFor="cpf">CPF</Label>
+              <Input id="cpf" placeholder="Digite seu CPF" {...register('cpf')} aria-invalid={!!errors.cpf} />
+              {errors.cpf && <ErrorMessage>{errors.cpf.message}</ErrorMessage>}
+            </InputGroup>
 
-          <InputGroup>
-            <Label htmlFor="nascimento">Data de Nascimento</Label>
-            <Input
-              id="nascimento"
-              type="date"
-              title="Informe a data de nascimento"
-              {...register('birthDate')}
-              name="nascimento"
-              type="date"
-              required
-              title="Informe a data de nascimento"
-            />
-          </InputGroup>
+            <InputGroup>
+              <Label htmlFor="street">Endereço</Label>
+              <Input id="street" placeholder="Digite seu endereço" {...register('street')} aria-invalid={!!errors.street} />
+              {errors.street && <ErrorMessage>{errors.street.message}</ErrorMessage>}
+            </InputGroup>
 
-          <InputGroup>
-            <Label htmlFor="numero">Número</Label>
-            <Input
-              id="numero"
-              placeholder="Digite o número"
-              title="Informe o número"
-              {...register('number')}
-              name="numero"
-              placeholder="Digite o número"
-              required
-              title="Informe o número"
-            />
-          </InputGroup>
+            <InputGroup>
+              <Label htmlFor="birthDate">Data de Nascimento</Label>
+              <Input id="birthDate" type="date" {...register('birthDate')} aria-invalid={!!errors.birthDate} />
+              {errors.birthDate && <ErrorMessage>{errors.birthDate.message}</ErrorMessage>}
+            </InputGroup>
 
-          <InputGroup>
-            <Label htmlFor="telefone">Telefone (Whatsapp)</Label>
-            <Input
-              id="telefone"
-              placeholder="(11) 91234-5678"
-              title="Digite um telefone válido com DDD"
-              {...register('phoneNumber')}
-              name="telefone"
-              placeholder="(11) 91234-5678"
-              required
-              pattern="\(?\d{2}\)?[\s-]?\d{4,5}-?\d{4}"
-              title="Digite um telefone válido com DDD"
-            />
-          </InputGroup>
+            <InputGroup>
+              <Label htmlFor="number">Número</Label>
+              <Input id="number" placeholder="Digite o número" {...register('number')} aria-invalid={!!errors.number} />
+              {errors.number && <ErrorMessage>{errors.number.message}</ErrorMessage>}
+            </InputGroup>
 
-          <InputGroup>
-            <Label htmlFor="complemento">Complemento</Label>
-            <Input id="complemento"
-              placeholder="Opcional"
-              {...register('complement')}
-            />
-            <Input id="complemento" name="complemento" placeholder="Opcional" />
-          </InputGroup>
+            <InputGroup>
+              <Label htmlFor="phoneNumber">Telefone (Whatsapp)</Label>
+              <Input
+                id="phoneNumber"
+                placeholder="(11) 91234-5678"
+                {...register('phoneNumber')}
+                aria-invalid={!!errors.phoneNumber}
+              />
+              {errors.phoneNumber && <ErrorMessage>{errors.phoneNumber.message}</ErrorMessage>}
+            </InputGroup>
 
-          <InputGroup>
-            <Label htmlFor="cidade">Cidade</Label>
-            <Input
-              id="cidade"
-              placeholder="Digite a cidade"
-              title="Use apenas letras e espaços"
-              {...register('city')}
-              name="cidade"
-              placeholder="Digite a cidade"
-              required
-              pattern="^[A-Za-zÀ-ú\s]+$"
-              title="Use apenas letras e espaços"
-            />
-          </InputGroup>
+            <InputGroup>
+              <Label htmlFor="complement">Complemento</Label>
+              <Input id="complement" placeholder="Opcional" {...register('complement')} aria-invalid={!!errors.complement} />
+              {errors.complement && <ErrorMessage>{errors.complement.message}</ErrorMessage>}
+            </InputGroup>
 
-          <InputGroup>
-            <Label htmlFor="estado">Estado</Label>
-            <Input
-              id="estado"
-              placeholder="Digite o estado"
-              title="Use apenas letras e espaços"
-              {...register('state')}
-              name="estado"
-              placeholder="Digite o estado"
-              required
-              pattern="^[A-Za-zÀ-ú\s]+$"
-              title="Use apenas letras e espaços"
-            />
-          </InputGroup>
-        </FormGrid>
+            <InputGroup>
+              <Label htmlFor="city">Cidade</Label>
+              <Input id="city" placeholder="Digite a cidade" {...register('city')} aria-invalid={!!errors.city} />
+              {errors.city && <ErrorMessage>{errors.city.message}</ErrorMessage>}
+            </InputGroup>
 
-        <CheckinButton type="submit">Realizar Check-in</CheckinButton>
-      </FormBox>
+            <InputGroup>
+              <Label htmlFor="state">Estado</Label>
+              <Input id="state" placeholder="Digite o estado" {...register('state')} aria-invalid={!!errors.state} />
+              {errors.state && <ErrorMessage>{errors.state.message}</ErrorMessage>}
+            </InputGroup>
+          </FormGrid>
+
+          {submitMessage && (
+            <ErrorMessage style={{ color: isSubmitted ? '#27ae60' : '#e63946', marginTop: '16px' }}>
+              {submitMessage}
+            </ErrorMessage>
+          )}
+
+          <CheckinButton type="submit" disabled={isSubmitting || !isValid} aria-label="Fazer check-in">
+            {isSubmitting ? (
+              <>
+                <FaSpinner className="spinner" style={{ marginRight: '8px' }} />
+                Carregando...
+              </>
+            ) : (
+              <>
+                <FaSignInAlt style={{ marginRight: '8px' }} />
+                Realizar Check-in
+              </>
+            )}
+          </CheckinButton>
+        </FormBox>
+      ) : (
+        <p>Obrigado por realizar seu check-in! Seu formulário foi enviado com sucesso.</p>
+      )}
     </Container>
   );
 };

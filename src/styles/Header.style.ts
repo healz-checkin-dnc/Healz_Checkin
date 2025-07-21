@@ -8,11 +8,11 @@ export const HeaderContainer = styled.header`
   padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.lg};
   background-color: ${({ theme }) => theme.colors.blueDark};
 
-  @media (max-width: 768px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     flex-direction: column;
     justify-content: center;
     padding: ${({ theme }) => theme.spacing.sm};
@@ -24,7 +24,7 @@ export const Logo = styled.img`
   height: 40px;
   width: auto;
 
-  @media (max-width: 480px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     height: 30px;
   }
 `;
@@ -39,7 +39,6 @@ export const Title = styled.h1`
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-size: 2rem;
-    text-align: center;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
@@ -50,7 +49,7 @@ export const Title = styled.h1`
 export const RightSpace = styled.div`
   width: 2.5rem;
 
-  @media (max-width: 480px) {
-    display: none; // Remove no mobile pra não ocupar espaço
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    display: none;
   }
 `;

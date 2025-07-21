@@ -4,13 +4,6 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:jsx-a11y/recommended',
-    'plugin:@typescript-eslint/recommended',
-    'prettier', // Sempre por último!
-  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -19,14 +12,29 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react', 'jsx-a11y', '@typescript-eslint'],
-  rules: {
-    // aqui você pode customizar as regras
-    'react/react-in-jsx-scope': 'off', // desnecessário com Vite/React 17+
-  },
   settings: {
     react: {
       version: 'detect',
     },
+  },
+  plugins: ['react', 'jsx-a11y', '@typescript-eslint', 'prettier'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:jsx-a11y/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended', // esse aqui integra com o prettier de forma completa
+  ],
+  rules: {
+    //  Estilo
+    'prettier/prettier': 'error',
+
+    //  Regras React
+    'react/react-in-jsx-scope': 'off', // Não precisa com React 17+
+    'react/prop-types': 'off', // usando TS, não precisa disso
+
+    //  Regras TypeScript
+    '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
 };
