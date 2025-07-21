@@ -18,12 +18,12 @@ export const theme = {
     main: 'Helvetica Now Display, sans-serif',
   },
   fontSizes: {
-    xs: '0.75rem', // 12px
-    sm: '0.875rem', // 14px
-    md: '1rem', // 16px
-    lg: '1.25rem', // 20px
-    xl: '2rem', // 32px
-    xxl: '3rem', // 48px
+    xs: '0.75rem', 
+    sm: '0.875rem', 
+    md: '1rem', 
+    lg: '1.25rem', 
+    xl: '2rem', 
+    xxl: '3rem',
   },
   breakpoints: {
     mobile: '480px',

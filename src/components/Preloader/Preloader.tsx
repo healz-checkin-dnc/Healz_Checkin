@@ -1,28 +1,44 @@
-// ECGWaveRepeat.tsx
 import { useEffect, useState } from 'react';
-import { ECGContainer, AnimatedPath } from '../../styles/Preloader.style'; // Importando os estilos
+import { ECGContainer } from '../../styles/Preloader.style';
+import { motion } from 'framer-motion';
+
+const MAX_CYCLES = 3;
+const ANIMATION_DURATION = 3000;
 
 export default function ECGWaveRepeat() {
   const [cycles, setCycles] = useState(0);
-  const [active, setActive] = useState(true);
+  const [isAnimating, setIsAnimating] = useState(true);
 
   useEffect(() => {
-    if (cycles < 3) {
-      setActive(true);
+    if (cycles >= MAX_CYCLES) {
+      setIsAnimating(false);
+      return;
+    }
+
+    if (!isAnimating) {
       const timeout = setTimeout(() => {
-        setActive(false); // Pausa
+        setIsAnimating(true);
         setCycles((prev) => prev + 1);
-      }, 3000); // Duração da animação
+      }, 500); // pausa entre animações
       return () => clearTimeout(timeout);
     }
-  }, [cycles]);
+  }, [isAnimating, cycles]);
+
+  if (cycles >= MAX_CYCLES) return null;
 
   return (
     <ECGContainer>
-      <svg viewBox="0 0 180 80" width="320">
-        <AnimatedPath
-          active={active}
+      <svg viewBox="0 0 180 80" width="320" height="auto" style={{ display: 'block', margin: '0 auto' }}>
+        <motion.path
           d="M0,40 H20 L30,20 L40,60 L50,10 L60,40 L70,30 L80,40 H100"
+          stroke="#F33F90"
+          strokeWidth={4}
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          initial={{ pathLength: 0 }}
+          animate={isAnimating ? { pathLength: 1 } : { pathLength: 0 }}
+          transition={{ duration: ANIMATION_DURATION / 1000, ease: 'easeInOut' }}
         />
       </svg>
     </ECGContainer>
