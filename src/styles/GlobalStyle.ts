@@ -1,7 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-  /* Reset básico para tudo */
   *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -16,10 +15,10 @@ export const GlobalStyle = createGlobalStyle`
   body {
     min-height: 100vh;
     font-family: ${({ theme }) => theme.fonts.main}, sans-serif;
-    -webkit-font-smoothing: antialiased; /* Chrome, Safari, Edge (macOS) */
-    -moz-osx-font-smoothing: grayscale;  /* Firefox (macOS) */
-    text-rendering: optimizeLegibility;  /* Melhora ligaturas e kerning */
-    font-feature-settings: "liga", "kern"; /* Suaviza tipografia */
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility; 
+    font-feature-settings: "liga", "kern"; 
     line-height: 1.5;
     background-color: ${({ theme }) => theme.colors.grayLight};
     color: ${({ theme }) => theme.colors.blueDark};
@@ -37,7 +36,6 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-  /* Imagens responsivas */
   img {
     max-width: 100%;
     height: auto;
