@@ -155,13 +155,6 @@ const CheckinForm = ({ token }: Props) => {
               {errors.state && <ErrorMessage>{errors.state.message}</ErrorMessage>}
             </InputGroup>
           </FormGrid>
-
-      {submitMessage && (
-        <ErrorMessage style={{ color: isSubmitted ? '#27ae60' : '#e63946', marginTop: '16px' }}>
-          {submitMessage}
-        </ErrorMessage>
-      )}
-
       <CheckinButton type="submit" disabled={isSubmitting || !isValid} aria-label="Fazer check-in">
         {isSubmitting ? (
           <>
