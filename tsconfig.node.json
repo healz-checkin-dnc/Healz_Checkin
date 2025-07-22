@@ -24,5 +24,8 @@
 
     "jsx": "react-jsx"
   },
+  "references": [
+  { "path": "../netlify/functions" }
+],
   "include": ["vite.config.ts", "src"]
 }
