@@ -1,6 +1,6 @@
 import type { CheckinSchemaType } from '../components/CheckinForm/checkinSchema';
 export default class HandleSubmit {
-  private static API_URL = 'http://localhost:3001';
+  private static API_URL = '/.netlify/functions'; // ✅ this is live in Netlify
 
   async execute(input: CheckinSchemaType): Promise<any> {
     try {
