@@ -5,6 +5,7 @@ import { CheckinSchema, type CheckinSchemaType } from './checkinSchema';
 import { CheckinButton } from '../CheckinButton/CheckinButton';
 import HandleSubmit from '../../services/handleForm';
 import { FaSignInAlt, FaSpinner } from 'react-icons/fa';
+import { Popup } from '../Popup/Popup';
 
 import {
   Container,
@@ -84,11 +85,10 @@ const CheckinForm = ({ token }: Props) => {
   };
 
   return (
-    <Container>
-      <Title>{isSubmitted ? 'Obrigado pelo seu check-in!' : 'Confira e preencha seus dados'}</Title>
+  <Container>
+    <Title>Confira e preencha seus dados</Title>
 
-      {!isSubmitted ? (
-        <FormBox onSubmit={handleSubmit(onSubmit)} noValidate>
+    <FormBox onSubmit={handleSubmit(onSubmit)} noValidate>
           <FormGrid>
             <InputGroup>
               <Label htmlFor="name">Nome completo</Label>
@@ -156,31 +156,38 @@ const CheckinForm = ({ token }: Props) => {
             </InputGroup>
           </FormGrid>
 
-          {submitMessage && (
-            <ErrorMessage style={{ color: isSubmitted ? '#27ae60' : '#e63946', marginTop: '16px' }}>
-              {submitMessage}
-            </ErrorMessage>
-          )}
-
-          <CheckinButton type="submit" disabled={isSubmitting || !isValid} aria-label="Fazer check-in">
-            {isSubmitting ? (
-              <>
-                <FaSpinner className="spinner" style={{ marginRight: '8px' }} />
-                Carregando...
-              </>
-            ) : (
-              <>
-                <FaSignInAlt style={{ marginRight: '8px' }} />
-                Realizar Check-in
-              </>
-            )}
-          </CheckinButton>
-        </FormBox>
-      ) : (
-        <p>Obrigado por realizar seu check-in! Seu formulário foi enviado com sucesso.</p>
+      {submitMessage && (
+        <ErrorMessage style={{ color: isSubmitted ? '#27ae60' : '#e63946', marginTop: '16px' }}>
+          {submitMessage}
+        </ErrorMessage>
       )}
-    </Container>
-  );
+
+      <CheckinButton type="submit" disabled={isSubmitting || !isValid} aria-label="Fazer check-in">
+        {isSubmitting ? (
+          <>
+            <FaSpinner className="spinner" style={{ marginRight: '8px' }} />
+            Carregando...
+          </>
+        ) : (
+          <>
+            <FaSignInAlt style={{ marginRight: '8px' }} />
+            Realizar Check-in
+          </>
+        )}
+      </CheckinButton>
+    </FormBox>
+
+    {isSubmitted && submitMessage && (
+      <Popup
+    message={submitMessage}
+    onClose={() => {
+      setIsSubmitted(false);
+      setSubmitMessage(null);
+        }}
+      />
+    )}
+  </Container>
+);
 };
 
 export default CheckinForm;
