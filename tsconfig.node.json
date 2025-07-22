@@ -27,5 +27,5 @@
   "references": [
   { "path": "./netlify/functions" }
 ],
-  "include": ["vite.config.ts", "src"]
+  "include": ["vite.config.ts", "src", "netlify/functions"]
 }
