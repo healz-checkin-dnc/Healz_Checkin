@@ -56,7 +56,7 @@ const CheckinForm = ({ token }: Props) => {
     console.log('🔍 useEffect firing, token =', token);
     if (!token) return;
 
-    fetch(`http://localhost:3001/fetch-user?token=${token}`)
+    fetch(`/.netlify/functions/fetch-user?token=${token}`)
       .then((res) => {
         if (!res.ok) throw new Error('Token inválido ou expirado');
         return res.json();

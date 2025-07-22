@@ -3,7 +3,7 @@ import { ECGContainer } from '../../styles/Preloader.style';
 import { motion } from 'framer-motion';
 
 const MAX_CYCLES = 3;
-const ANIMATION_DURATION = 3000;
+const ANIMATION_DURATION = 1000;
 
 export default function ECGWaveRepeat() {
   const [cycles, setCycles] = useState(0);
