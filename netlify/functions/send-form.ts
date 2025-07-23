@@ -19,17 +19,37 @@ async function getSheetsService() {
 
 const handler: Handler = async (event) => {
   if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method Not Allowed' };
+    return {
+      statusCode: 405,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ error: 'Method Not Allowed' }),
+    };
   }
 
   const data = JSON.parse(event.body || '{}');
   console.log('📌 Data received:', data);
 
+  const requiredFields = [
+    'name', 'cpf', 'birthDate', 'phoneNumber',
+    'zipCode', 'street', 'complement', 'number',
+    'city', 'state'
+  ];
+
+  for (const field of requiredFields) {
+    if (!data[field]) {
+      return {
+        statusCode: 400,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ error: `Campo obrigatório ausente: ${field}` }),
+      };
+    }
+  }
+
   try {
     const sheets = await getSheetsService();
     await sheets.spreadsheets.values.append({
       spreadsheetId,
-      range: 'A:C',
+      range: 'A:J',
       valueInputOption: 'RAW',
       requestBody: {
         values: [[
@@ -49,12 +69,14 @@ const handler: Handler = async (event) => {
 
     return {
       statusCode: 200,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message: 'Dados salvos com sucesso!' }),
     };
   } catch (err) {
     console.error('❌ Error writing to sheet:', err);
     return {
       statusCode: 500,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         error: err instanceof Error ? err.message : 'Erro desconhecido',
       }),
