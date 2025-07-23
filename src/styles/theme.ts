@@ -6,6 +6,8 @@ export const theme = {
     healzPink: '#F33F90',
     pinkShadow: '#EDC0D5',
     footerInfo: '#666',
+    healzBlack: '#111111',
+    healzVin: '#7E0741',
   },
   spacing: {
     xs: '4px',
@@ -18,11 +20,11 @@ export const theme = {
     main: 'Helvetica Now Display, sans-serif',
   },
   fontSizes: {
-    xs: '0.75rem', 
-    sm: '0.875rem', 
-    md: '1rem', 
-    lg: '1.25rem', 
-    xl: '2rem', 
+    xs: '0.75rem',
+    sm: '0.875rem',
+    md: '1rem',
+    lg: '1.25rem',
+    xl: '2rem',
     xxl: '3rem',
   },
   breakpoints: {
