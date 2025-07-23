@@ -5,7 +5,7 @@ export const theme = {
     blueDark: '#010D27',
     healzPink: '#F33F90',
     pinkShadow: '#EDC0D5',
-    footerInfo: '#666',
+    footerInfo: '#666666',
     healzBlack: '#111111',
     healzVin: '#7E0741',
   },
