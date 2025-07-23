@@ -1,4 +1,19 @@
 [build]
-  command = "npm run build"
+  command = "npm run build"               # Comando que roda no build (Vite vai gerar a pasta dist)
+  publish = "dist"                        # Onde Netlify vai servir os arquivos (frontend estático)
+  functions = "netlify/functions"         # Caminho das serverless functions (backend serverless)
+
+[dev]
+  framework = "vite"
+  command = "vite"
+  targetPort = 5173
+  port = 8888
   publish = "dist"
-  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"  # mais rápido e compatível
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

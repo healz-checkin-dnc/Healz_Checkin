@@ -1,8 +1,4 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import tsPlugin from '@typescript-eslint/eslint-plugin'
+import { browser } from 'globals'
 import tsParser from '@typescript-eslint/parser'
 
 export default {
@@ -16,23 +12,36 @@ export default {
   env: {
     browser: true,
     es2021: true,
+    node: true,
   },
-  globals: globals.browser,
+  globals: browser,
   ignorePatterns: ['dist', 'node_modules', 'build'],
-  plugins: ['@typescript-eslint', 'react-hooks', 'react-refresh', 'prettier'],
+  plugins: ['react', '@typescript-eslint', 'react-hooks', 'react-refresh', 'prettier', 'import'],
   extends: [
     'eslint:recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
+    'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
     'plugin:react-refresh/recommended',
-    'plugin:prettier/recommended', // Faz o ESLint respeitar o Prettier e mostrar erros de formatação
+    'plugin:prettier/recommended',
   ],
   rules: {
-    'prettier/prettier': 'error', // Erro se o código não seguir Prettier
+    'prettier/prettier': 'error',
     '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
-    // Pode adicionar regras extras aqui...
+    'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off',
+    'import/order': [
+      'warn',
+      {
+        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+        'newlines-between': 'always',
+      },
+    ],
   },
   settings: {
     react: { version: 'detect' },

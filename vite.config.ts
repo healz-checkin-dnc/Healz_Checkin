@@ -1,17 +1,26 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
+import compression from 'vite-plugin-compression'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    compression({
+      algorithm: 'gzip',
+      ext: '.gz',
+      threshold: 1024, 
+      deleteOriginFile: false,
+    }),
+  ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },
   },
   build: {
-    target: 'es2022',
-    sourcemap: true, 
+    target: 'es2017',
+    sourcemap: true,
     outDir: 'dist',
     minify: 'esbuild',
     rollupOptions: {
@@ -27,6 +36,6 @@ export default defineConfig({
     open: true,
   },
   define: {
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV), 
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
   },
 })
