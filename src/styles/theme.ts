@@ -5,7 +5,7 @@ export const theme = {
     blueDark: '#010D27',
     healzPink: '#F33F90',
     pinkShadow: '#EDC0D5',
-    footerInfo: '#666',
+    footerInfo: '#666666',
   },
   spacing: {
     xs: '4px',
@@ -15,15 +15,15 @@ export const theme = {
     xl: '64px',
   },
   fonts: {
-    main: 'Helvetica Now Display, sans-serif',
+    main: '"Helvetica Now Display", sans-serif',
   },
   fontSizes: {
-    xs: '0.75rem', 
-    sm: '0.875rem', 
-    md: '1rem', 
-    lg: '1.25rem', 
-    xl: '2rem', 
-    xxl: '3rem',
+    xs: '0.75rem',   // 12px
+    sm: '0.875rem',  // 14px
+    md: '1rem',      // 16px (base)
+    lg: '1.25rem',   // 20px
+    xl: '2rem',      // 32px
+    xxl: '3rem',     // 48px
   },
   breakpoints: {
     mobile: '480px',
