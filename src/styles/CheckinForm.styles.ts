@@ -16,7 +16,7 @@ export const Container = styled.main`
 `;
 
 export const Title = styled.h2`
-  font-size: 1.25rem;
+  font-size: ${({theme}) => theme.fontSizes.lg};
   color: ${({ theme }) => theme.colors.blueDark};
   margin-bottom: ${({ theme }) => theme.spacing.md};
   font-weight: 600;
@@ -31,7 +31,7 @@ export const FormBox = styled.form`
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing.lg};
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(243, 63, 144, 0.15);
+  box-shadow: 0 4px 12px rgba(105, 90, 97, 0.21);
 `;
 
 export const FormGrid = styled.div`
@@ -50,7 +50,7 @@ export const InputGroup = styled.div`
 `;
 
 export const Label = styled.label`
-  font-size: 0.95rem;
+  font-size: ${({theme}) => theme.fontSizes.md};
   font-weight: 400;
   color: ${({ theme }) => theme.colors.blueDark};
   margin-bottom: 4px;
@@ -63,7 +63,7 @@ export const Input = styled.input`
   box-shadow: 0 6px 12px -2px ${({ theme }) => theme.colors.pinkShadow}80;
   background-color: ${({ theme }) => theme.colors.grayLight};
   border-radius: 100px;
-  font-size: 1rem;
+  font-size: ${({theme}) => theme.fontSizes.md};
   outline-color: ${({ theme }) => theme.colors.healzPink};
 
   &::placeholder {
@@ -71,14 +71,14 @@ export const Input = styled.input`
   }
 
   &:focus {
-    box-shadow: 0 0 0 3px ${({ theme }) => theme.colors.healzPink}88;
+    box-shadow: 0 0 0 3px ${({ theme }) => theme.colors.healzPink};
   }
 `;
 
 export const ErrorMessage = styled.span`
-  text-align: center;
+  text-align: left;
   color: #e63946;
-  font-size: 0.875rem;
+  font-size: ${({theme}) => theme.fontSizes.sm};
   margin-top: 4px;
   display: block;
   font-weight: 500;
