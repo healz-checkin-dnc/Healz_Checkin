@@ -5,8 +5,26 @@ const spin = keyframes`
   100% { transform: rotate(360deg); }
 `;
 
+const pulse = keyframes`
+  0%, 100% {
+    box-shadow: 0 0 12px ${({ theme }) => theme.colors.healzVin}, 0 0 25px ${({ theme }) => theme.colors.healzVin};
+  }
+  50% {
+    box-shadow: 0 0 20px ${({ theme }) => theme.colors.healzPink}, 0 0 35px ${({ theme }) => theme.colors.healzPink};
+  }
+`;
+
+const shine = keyframes`
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 200%;
+  }
+`;
+
 export const CheckinButton = styled.button`
-  background: linear-gradient(135deg, ${({ theme }) => theme.colors.healzPink} 0%, #ff69b4 100%);
+  background: linear-gradient(60deg, ${({ theme }) => theme.colors.healzBlack} 10%, ${({ theme }) => theme.colors.healzVin} 70%);
   color: ${({ theme }) => theme.colors.white};
   border: none;
   border-radius: 999px;
@@ -14,40 +32,38 @@ export const CheckinButton = styled.button`
   font-weight: bold;
   font-size: 1.25rem;
   cursor: pointer;
-  max-width: 18.75rem; /* 300px */
+  max-width: 18.75rem;
   margin: 40px auto 0;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
-  box-shadow: 0 10px 16px ${({ theme }) => theme.colors.pinkShadow};
   width: 100%;
+  transition: all 0.3s ease;
+  animation: ${pulse} 3s infinite ease-in-out;
 
-  &::before {
+  &::after {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15), transparent 70%);
-    transform: rotate(45deg);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    opacity: 0;
-    pointer-events: none;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transform: skewX(-20deg);
+    animation: ${shine} 3.2s infinite ease-in-out;
   }
 
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 14px 22px ${({ theme }) => theme.colors.pinkShadow};
-
-    &::before {
-      opacity: 1;
-    }
+    transform: scale(1.02);
+    filter: brightness(1.15);
   }
 
   &:active {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px ${({ theme }) => theme.colors.pinkShadow};
+    transform: scale(0.98);
   }
 
   &:focus-visible {
@@ -58,6 +74,7 @@ export const CheckinButton = styled.button`
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+    animation: none;
   }
 
   svg.spinner {
