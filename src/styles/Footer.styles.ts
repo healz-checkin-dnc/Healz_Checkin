@@ -32,7 +32,7 @@ export const SocialList = styled.ul`
 export const SocialItem = styled.li``;
 
 export const IconWrapper = styled.a`
-  background-color: ${({ theme }) => theme.colors.healzPink};
+    background: linear-gradient(20deg, #111111 10%, #7e0741 60%);
   color: ${({ theme }) => theme.colors.white};
   border-radius: 50%;
   padding: 8px;
