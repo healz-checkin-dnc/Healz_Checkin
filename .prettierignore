@@ -1,31 +1,29 @@
 # Dependências
 node_modules/
 
-# Builds
+# Pastas de build/output
 dist/
 build/
 .out/
 .next/
 turbo/
 
-# Lockfiles
+# Lockfiles (não versionar pra evitar conflitos)
 package-lock.json
+*.lock
 
-# Arquivos de ambiente
+# Arquivos de ambiente (não vaza secrets)
 .env
 .env.*.local
 
-# Cache e relatórios
+# Cache e relatórios de teste
 .cache/
 coverage/
 
 # Logs
 *.log
 
-# Arquivos de config que não precisam ser formatados
+# Configurações que geram ruído e não precisam de versionamento
 vite.config.ts
 *.config.js
 *.config.ts
-
-# Outros arquivos que não devem ser mexidos
-*.lock

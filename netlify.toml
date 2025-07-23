@@ -1,4 +1,4 @@
 [build]
-  command = "npm run build"
-  publish = "dist"
-  functions = "netlify/functions"
+  command = "npm run build"        # Comando para buildar seu projeto
+  publish = "dist"                 # Pasta onde está o site estático gerado (build output)
+  functions = "netlify/functions" # Pasta onde ficam suas funções serverless Netlify
