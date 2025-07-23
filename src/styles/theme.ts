@@ -6,6 +6,8 @@ export const theme = {
     healzPink: '#F33F90',
     pinkShadow: '#EDC0D5',
     footerInfo: '#666666',
+    healzBlack: '#111111',
+    healzVin: '#7c0741'
   },
   spacing: {
     xs: '4px',
