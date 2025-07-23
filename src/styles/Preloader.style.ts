@@ -26,11 +26,27 @@ export const ECGContainer = styled.div`
   inset: 0;
   width: 100vw;
   height: 100vh;
-  background: ${({ theme }) => theme.colors.blueDark || '#001f3f'};
+  z-index: 9999;
+  background: linear-gradient(
+    130deg,
+    ${({ theme }) => theme.colors.healzBlack} 70%,
+    ${({ theme }) => theme.colors.healzVin} 100%
+  );
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
+`;
+
+export const ECGWrapper = styled.div`
+  transform: translateX(30px); // move o símbolo para a direita
+  width: 300px;
+  height: 100px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    transform: translateX(10px);
+    width: 200px;
+    height: 80px;
+  }
 `;
 
 export const AnimatedPath = styled.path<{ active: boolean }>`
