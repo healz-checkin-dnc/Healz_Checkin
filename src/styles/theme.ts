@@ -3,7 +3,7 @@ export const theme = {
     white: '#FFFFFF',
     grayLight: '#F9F9F9',
     blueDark: '#010D27',
-    healzPink: '#F33F90',
+    healzPink: '#f20775',
     pinkShadow: '#EDC0D5',
     footerInfo: '#666666',
     healzBlack: '#111111',

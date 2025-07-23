@@ -24,7 +24,7 @@ const shine = keyframes`
 `;
 
 export const CheckinButton = styled.button`
-  background: linear-gradient(60deg, ${({ theme }) => theme.colors.healzBlack} 10%, ${({ theme }) => theme.colors.healzVin} 70%);
+  background: ${({theme}) => theme.colors.healzPink};
   color: ${({ theme }) => theme.colors.white};
   border: none;
   border-radius: 999px;
