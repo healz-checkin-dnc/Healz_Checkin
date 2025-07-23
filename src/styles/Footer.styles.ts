@@ -1,12 +1,10 @@
 import { styled } from 'styled-components';
 
 export const FooterContainer = styled.footer`
-  background-color: ${({ theme }) => theme.colors.grayLight};
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.lg};
-  flex-wrap: wrap;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     flex-direction: column;
@@ -28,10 +26,9 @@ export const SocialList = styled.ul`
   display: flex;
   gap: ${({ theme }) => theme.spacing.sm};
   list-style: none;
-  padding: 0;
-  margin: 0;
 `;
 
+// div para o icones
 export const SocialItem = styled.li``;
 
 export const IconWrapper = styled.a`
@@ -40,9 +37,6 @@ export const IconWrapper = styled.a`
   border-radius: 50%;
   padding: 8px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
   transition:
     transform 0.2s ease-in-out,
     opacity 0.2s ease-in-out;
@@ -61,20 +55,23 @@ export const IconWrapper = styled.a`
 `;
 
 export const InfoText = styled.p`
-  font-size: 0.85rem;
+  font-size: ${({ theme }) => theme.fontSizes.sm};
   color: ${({ theme }) => theme.colors.footerInfo};
   margin-top: 0.5rem;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    font-size: 0.8rem;
+    font-size: ${({ theme }) => theme.fontSizes.sm};
   }
 `;
 
 export const CopyrightBar = styled.div`
-  background-color: ${({ theme }) => theme.colors.healzPink};
-  color: ${({ theme }) => theme.colors.white};
+  background: linear-gradient(130deg, #111111 50%, #7e0741 100%);
   text-align: center;
-  font-size: 0.875rem;
   padding: ${({ theme }) => theme.spacing.sm};
   margin-top: ${({ theme }) => theme.spacing.md};
+
+  p {
+    color: ${({ theme }) => theme.colors.white};
+    font-size: ${({ theme }) => theme.fontSizes.sm};
+  }
 `;
