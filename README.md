@@ -1,60 +1,68 @@
 # 🩺 Healz Check-in
 
-Projeto front-end feito com **Vite + React + TypeScript** para controle de check-in em clínicas e hospitais.
+**Sistema moderno de check-in para clínicas e hospitais** feito com tecnologias top para garantir agilidade, segurança e controle na ponta dos dedos.
 
 ---
 
-## 🚀 Tecnologias
+## 🚀 Tecnologias Usadas
 
-- Vite
-- React
-- TypeScript
-- ESLint (para qualidade e padrões de código)
-- Prettier (para formatação automática do código)
+- **Frontend:** React + Vite + TypeScript  
+- **Validação e Forms:** React Hook Form + Zod (validação robusta, nada de gambiarra)  
+- **Qualidade de Código:** ESLint + Prettier (padrão cirúrgico, código sempre limpo)  
+- **Backend:** Node.js + Express.js (API leve, rápida e eficiente)  
+- **Middleware:** CORS + JSON Middleware (proteção e comunicação suave)  
+- **Integração:** Google Sheets via API (armazenamento prático e seguro)  
+- **Configuração:** dotenv para variáveis de ambiente (seu segredo fica seguro)
 
+---
 
-## 🛠️ Configuração do Ambiente
+## ⚙️ Como Rodar o Projeto
+
+> **Atenção:** Este projeto é privado e destinado exclusivamente à equipe autorizada da Healz.  
+
+Se você recebeu acesso ao repositório, siga os passos abaixo para configurar o ambiente local.
 
 ### 1. Clone o repositório
 
-git clone https://github.com/Healz_Chekin/healz-checkin.git
+> O acesso ao repositório é controlado via plataforma Git (GitHub, GitLab, etc).  
+> Solicite seu acesso ao gerente de projeto ou administrador do repositório.
 
-2. Instale as dependências
+### 2. Instale as dependências do frontend
 
-npm install
+>npm install
 
-3. Rode o projeto localmente
+>npm run dev
 
-npm run dev
+### 3. Instale as dependências do backend
+
+>cd server
+
+>npm install
+
+> npx tsx main.ts *(para rodar local)*
+
+Renomeie o arquivo .env.example para .env:
+
+> mv .env.example .env
+
+## 🎯 Por que Healz Check-in?
+Este projeto foi desenvolvido para uma empresa real, com requisitos rigorosos de segurança, performance e escalabilidade. Não é um protótipo, mas uma solução robusta e confiável, construída com tecnologias modernas como React e Node.js para garantir uma experiência fluida, integração eficiente e manutenção simplificada em ambientes clínicos.
+
+Cada linha de código foi pensada para suportar operações críticas, garantindo agilidade no atendimento e integridade dos dados, refletindo o compromisso da Healz com excelência e inovação no setor de saúde.
+
+A integração com Google Sheets garante que o time clínico tenha dados atualizados em tempo real, sem complicação.
 
 ---
 
-## 🚀 Subindo o Servidor Backend
+## 👥 Nossa Equipe
 
-1. Acesse a pasta do servidor:
-   ```bash
-   cd server
-   ```
-2. Instale as dependências:
-   ```bash
-   npm install
-   ```
-3. Certifique-se de que o arquivo `credentials.json` (com as credenciais da API do Google Sheets) está presente na raiz da pasta `server`.
-4. Renomeie o arquivo `.env.example` para `.env`:
-   ```bash
-   mv .env.example .env
-   ```
-5. Inicie o servidor:
-   ```bash
-   npm run dev
-   ```
+Aqui quem fez acontecer:
 
-## ESLint & Prettier
-ESLint ajuda a encontrar erros e manter padrão de código.
+- **Kevinn** – Product Owner & Desenvolvedor Front-end  
+- **Devan** – Designer & Desenvolvedor Front-end  
+- **Dennis** – Desenvolvedor Backend  
+- **Artur** – Desenvolvedor Backend  
 
-Prettier formata automaticamente seu código para ficar sempre bonito.
-
-1. Para verificar e corrigir erros de ESLint:
-
-2. npm run format
+## Imagem do formulário
+![alt text](image.png)
 
