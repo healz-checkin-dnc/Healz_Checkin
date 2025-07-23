@@ -1,4 +1,7 @@
 [build]
-  command = "npm run build"        # Comando para buildar seu projeto
-  publish = "dist"                 # Pasta onde está o site estático gerado (build output)
-  functions = "netlify/functions" # Pasta onde ficam suas funções serverless Netlify
+  command = "npm run build"
+  publish = "dist"         # ou ajuste conforme sua estrutura: frontend/dist, public, etc
+  functions = "dist"       # onde caem as Netlify Functions após o build
+
+[functions]
+  node_bundler = "esbuild" # Esbuild é mais rápido e amigável pra TypeScript moderno

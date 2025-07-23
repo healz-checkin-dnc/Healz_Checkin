@@ -1,13 +1,15 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "commonjs",
+    "module": "ESNext",
     "lib": ["ES2020", "DOM"],
-    "esModuleInterop": true,
     "moduleResolution": "node",
-    "types": ["@netlify/functions", "node"],
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
     "outDir": "dist",
-    "composite": true
+    "strict": true,
+    "types": ["@netlify/functions", "node"]
   },
-  "include": ["./*.ts"]
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules", "dist"]
 }
