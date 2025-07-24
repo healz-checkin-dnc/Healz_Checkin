@@ -1,7 +1,7 @@
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { useEffect, useState, useMemo } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { CheckinSchema, type CheckinSchemaType } from '../../schemas/checkinSchema';
+import { CheckinSchema, type CheckinSchemaType } from '../../schemas/CheckinSchema';
 import { CheckinButton } from '../CheckinButton/CheckinButton';
 import HandleSubmit from '../../services/handleForm';
 import { FaSignInAlt, FaSpinner } from 'react-icons/fa';
