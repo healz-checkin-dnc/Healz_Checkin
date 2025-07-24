@@ -1,20 +1,20 @@
 {
-  "files": [],
-
-  // Referências a outros tsconfigs do projeto (Project References)
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ],
-
   "compilerOptions": {
-    "composite": true,                     // Necessário para Project References e build incremental
-    "forceConsistentCasingInFileNames": true, // Evita erros por diferença entre maiúsculas e minúsculas nos nomes de arquivos
-    "skipLibCheck": true,                  // Ignora checagem de tipos em libs externas (ganha velocidade)
-    "noEmit": true,                        // Não gera JS aqui, só verifica tipos nos projetos referenciados
-    "incremental": true,                   // Habilita build incremental para acelerar builds futuras
-    "exactOptionalPropertyTypes": true,   // Rigor na tipagem de propriedades opcionais
-    "strict": true,                        // Liga todas as opções de checagem estrita
-    "strictNullChecks": true               // Trata null e undefined como tipos distintos e obrigatórios
-  }
+    "target": "ES2020",
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "outDir": "dist/client",
+    "strict": true,
+    "types": ["vite/client"],
+    "isolatedModules": true,
+    "noEmit": true,                 
+    "skipLibCheck": true,          
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx"             
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }
