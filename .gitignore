@@ -1,4 +1,4 @@
-# Logs
+# Logs de sistema e debug
 logs/
 *.log
 npm-debug.log*
@@ -7,21 +7,21 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Node modules e builds
+# Dependências e builds (nunca versionar!)
 node_modules/
 dist/
 dist-ssr/
 build/
 out/
 
-# Arquivos locais e env
+# Arquivos de ambiente locais (contém secrets!)
 *.local
 .env
 .env.*.local
 
-# Diretórios de IDE/editor
+# Pastas de IDE / editor (config pessoal, não compartilha)
 .vscode/
-!.vscode/extensions.json
+!.vscode/extensions.json  # Pode versionar essa se quiser padronizar extensões
 .idea/
 .DS_Store
 *.suo
@@ -30,13 +30,13 @@ out/
 *.sln
 *.sw?
 
-# Coverage (testes)
+# Relatórios de cobertura de testes
 coverage/
 
-# Cache e compilações temporárias
+# Cache, builds temporários e ferramentas de monorepo
 .cache/
 .next/
 turbo/
 
-# Lockfiles (use só um!)
+# Lockfiles - mantenha só um pra evitar conflitos
 package-lock.json

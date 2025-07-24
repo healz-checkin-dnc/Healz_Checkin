@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
 import { GlobalStyle } from './styles/GlobalStyle';
 import CheckinPage from './pages/CheckinPage';
-import Preloader from './components/Preloader/Preloader'; // importamos o loader aqui
+import Preloader from './components/Preloader/Preloader';
 
 export function App() {
   const [loading, setLoading] = useState(true);
@@ -11,7 +11,7 @@ export function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3000); // tempo do loader em milissegundos
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);

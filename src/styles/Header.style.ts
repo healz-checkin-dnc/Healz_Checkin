@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.header`
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.lg};
-  background-color: ${({ theme }) => theme.colors.blueDark};
+  background: linear-gradient(
+    130deg,
+    ${({ theme }) => theme.colors.healzBlack} 70%,
+    ${({ theme }) => theme.colors.healzVin} 100%
+  );
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};

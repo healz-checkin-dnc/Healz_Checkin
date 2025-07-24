@@ -1,0 +1,7 @@
+[build]
+  command = "npm run build"
+  publish = "dist"         # ou ajuste conforme sua estrutura: frontend/dist, public, etc
+  functions = "dist"       # onde caem as Netlify Functions após o build
+
+[functions]
+  node_bundler = "esbuild" # Esbuild é mais rápido e amigável pra TypeScript moderno
