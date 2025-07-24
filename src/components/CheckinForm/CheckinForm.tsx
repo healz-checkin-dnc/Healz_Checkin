@@ -56,7 +56,7 @@ const CheckinForm = ({ token }: Props) => {
     console.log('🔍 useEffect firing, token =', token);
     if (!token) return;
 
-    fetch(`http://localhost:3001/fetch-user?token=${token}`)
+    fetch(`/.netlify/functions/fetch-user?token=${token}`)
       .then((res) => {
         if (!res.ok) throw new Error('Token inválido ou expirado');
         return res.json();
@@ -86,43 +86,72 @@ const CheckinForm = ({ token }: Props) => {
   return (
     <Container>
       <Title>{isSubmitted ? 'Obrigado pelo seu check-in!' : 'Confira e preencha seus dados'}</Title>
-
       {!isSubmitted ? (
         <FormBox onSubmit={handleSubmit(onSubmit)} noValidate>
           <FormGrid>
             <InputGroup>
               <Label htmlFor="name">Nome completo</Label>
-              <Input id="name" placeholder="Digite seu nome" {...register('name')} aria-invalid={!!errors.name} />
+              <Input
+                id="name"
+                placeholder="Digite seu nome"
+                {...register('name')}
+                aria-invalid={!!errors.name}
+              />
               {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
             </InputGroup>
 
             <InputGroup>
               <Label htmlFor="zipCode">CEP</Label>
-              <Input id="zipCode" placeholder="Digite o CEP" {...register('zipCode')} aria-invalid={!!errors.zipCode} />
+              <Input
+                id="zipCode"
+                placeholder="Digite o CEP"
+                {...register('zipCode')}
+                aria-invalid={!!errors.zipCode}
+              />
               {errors.zipCode && <ErrorMessage>{errors.zipCode.message}</ErrorMessage>}
             </InputGroup>
 
             <InputGroup>
               <Label htmlFor="cpf">CPF</Label>
-              <Input id="cpf" placeholder="Digite seu CPF" {...register('cpf')} aria-invalid={!!errors.cpf} />
+              <Input
+                id="cpf"
+                placeholder="Digite seu CPF"
+                {...register('cpf')}
+                aria-invalid={!!errors.cpf}
+              />
               {errors.cpf && <ErrorMessage>{errors.cpf.message}</ErrorMessage>}
             </InputGroup>
 
             <InputGroup>
               <Label htmlFor="street">Endereço</Label>
-              <Input id="street" placeholder="Digite seu endereço" {...register('street')} aria-invalid={!!errors.street} />
+              <Input
+                id="street"
+                placeholder="Digite seu endereço"
+                {...register('street')}
+                aria-invalid={!!errors.street}
+              />
               {errors.street && <ErrorMessage>{errors.street.message}</ErrorMessage>}
             </InputGroup>
 
             <InputGroup>
               <Label htmlFor="birthDate">Data de Nascimento</Label>
-              <Input id="birthDate" type="date" {...register('birthDate')} aria-invalid={!!errors.birthDate} />
+              <Input
+                id="birthDate"
+                type="date"
+                {...register('birthDate')}
+                aria-invalid={!!errors.birthDate}
+              />
               {errors.birthDate && <ErrorMessage>{errors.birthDate.message}</ErrorMessage>}
             </InputGroup>
 
             <InputGroup>
               <Label htmlFor="number">Número</Label>
-              <Input id="number" placeholder="Digite o número" {...register('number')} aria-invalid={!!errors.number} />
+              <Input
+                id="number"
+                placeholder="Digite o número"
+                {...register('number')}
+                aria-invalid={!!errors.number}
+              />
               {errors.number && <ErrorMessage>{errors.number.message}</ErrorMessage>}
             </InputGroup>
 
@@ -139,30 +168,48 @@ const CheckinForm = ({ token }: Props) => {
 
             <InputGroup>
               <Label htmlFor="complement">Complemento</Label>
-              <Input id="complement" placeholder="Opcional" {...register('complement')} aria-invalid={!!errors.complement} />
+              <Input
+                id="complement"
+                placeholder="Opcional"
+                {...register('complement')}
+                aria-invalid={!!errors.complement}
+              />
               {errors.complement && <ErrorMessage>{errors.complement.message}</ErrorMessage>}
             </InputGroup>
 
             <InputGroup>
               <Label htmlFor="city">Cidade</Label>
-              <Input id="city" placeholder="Digite a cidade" {...register('city')} aria-invalid={!!errors.city} />
+              <Input
+                id="city"
+                placeholder="Digite a cidade"
+                {...register('city')}
+                aria-invalid={!!errors.city}
+              />
               {errors.city && <ErrorMessage>{errors.city.message}</ErrorMessage>}
             </InputGroup>
 
             <InputGroup>
               <Label htmlFor="state">Estado</Label>
-              <Input id="state" placeholder="Digite o estado" {...register('state')} aria-invalid={!!errors.state} />
+              <Input
+                id="state"
+                placeholder="Digite o estado"
+                {...register('state')}
+                aria-invalid={!!errors.state}
+              />
               {errors.state && <ErrorMessage>{errors.state.message}</ErrorMessage>}
             </InputGroup>
           </FormGrid>
-
           {submitMessage && (
             <ErrorMessage style={{ color: isSubmitted ? '#27ae60' : '#e63946', marginTop: '16px' }}>
               {submitMessage}
             </ErrorMessage>
           )}
 
-          <CheckinButton type="submit" disabled={isSubmitting || !isValid} aria-label="Fazer check-in">
+          <CheckinButton
+            type="submit"
+            disabled={isSubmitting || !isValid}
+            aria-label="Fazer check-in"
+          >
             {isSubmitting ? (
               <>
                 <FaSpinner className="spinner" style={{ marginRight: '8px' }} />

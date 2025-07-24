@@ -1,12 +1,10 @@
 import { styled } from 'styled-components';
 
 export const FooterContainer = styled.footer`
-  background-color: ${({ theme }) => theme.colors.grayLight};
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.lg};
-  flex-wrap: wrap;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     flex-direction: column;
@@ -28,8 +26,6 @@ export const SocialList = styled.ul`
   display: flex;
   gap: ${({ theme }) => theme.spacing.sm};
   list-style: none;
-  padding: 0;
-  margin: 0;
 `;
 
 export const SocialItem = styled.li``;
@@ -71,10 +67,14 @@ export const InfoText = styled.p`
 `;
 
 export const CopyrightBar = styled.div`
-  background-color: ${({ theme }) => theme.colors.healzPink};
+  background: linear-gradient(
+    130deg,
+    ${({ theme }) => theme.colors.healzBlack} 70%,
+    ${({ theme }) => theme.colors.healzVin} 100%
+  );
   color: ${({ theme }) => theme.colors.white};
   text-align: center;
   font-size: 0.875rem;
   padding: ${({ theme }) => theme.spacing.sm};
-  margin-top: ${({ theme }) => theme.spacing.md};
+  margin-top: ${({ theme }) => theme.spacing.sm};
 `;
