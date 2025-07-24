@@ -1,8 +1,31 @@
+# Dependências
 node_modules/
+
+# Builds
 dist/
 build/
-.env
-vite.config.ts
+.out/
+.next/
+turbo/
+
+# Lockfiles
 package-lock.json
-yarn.lock
-pnpm-lock.yaml
+
+# Arquivos de ambiente
+.env
+.env.*.local
+
+# Cache e relatórios
+.cache/
+coverage/
+
+# Logs
+*.log
+
+# Arquivos de config que não precisam ser formatados
+vite.config.ts
+*.config.js
+*.config.ts
+
+# Outros arquivos que não devem ser mexidos
+*.lock

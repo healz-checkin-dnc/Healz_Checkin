@@ -5,7 +5,13 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "composite": true,
-    "forceConsistentCasingInFileNames": true
+    "composite": true,                      // Necessário para Project References, habilita build incremental
+    "forceConsistentCasingInFileNames": true, // Evita problemas de case em arquivos
+    "skipLibCheck": true,                   // Ignora checagem de tipos em libs externas (aumenta velocidade)
+    "noEmit": true,                         // Não gera JS aqui, só checa os projetos referenciados
+    "incremental": true,                    // Ativa build incremental (cachea resultados)
+    "exactOptionalPropertyTypes": true,     // Opção rígida para propriedades opcionais
+    "strict": true,                         // Habilita todas as opções de verificação rigorosa
+    "strictNullChecks": true                // Habilita a verificação de null e undefined
   }
 }

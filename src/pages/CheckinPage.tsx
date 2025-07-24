@@ -6,24 +6,12 @@ import CheckinForm from '../components/CheckinForm/CheckinForm';
 export default function CheckinPage() {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
-
-  const prefillData = {
-    name: params.get('name') || '',
-    cpf: params.get('cpf') || '',
-    birthDate: params.get('birthDate') || '',
-    phoneNumber: params.get('phoneNumber') || '',
-    zipCode: params.get('zipCode') || '',
-    street: params.get('street') || '',
-    complement: params.get('complement') || '',
-    number: params.get('number') || '',
-    city: params.get('city') || '',
-    state: params.get('state') || '',
-  };
+  const token = params.get('token');
 
   return (
     <>
       <Header />
-      <CheckinForm prefillData={prefillData} />
+      <CheckinForm token={token} />
       <Footer />
     </>
   );

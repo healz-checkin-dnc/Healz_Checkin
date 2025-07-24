@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "lint": "eslint './src/**/*.{ts,tsx}'",
+    "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix",
+    "format": "prettier --write './src/**/*.{ts,tsx,js,json,css,md}'",
+    "format:fix": "prettier --write .",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -15,20 +18,15 @@
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.60.0",
     "react-icons": "^5.5.0",
-    "react-router-dom": "^7.6.3",
+    "react-router": "^7.7.0",
+    "react-router-dom": "^6.30.1",
     "styled-components": "^6.1.19",
     "zod": "^4.0.5"
   },
   "devDependencies": {
-    "@eslint/js": "^9.29.0",
     "@types/node": "^24.0.13",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
-<<<<<<< HEAD
-=======
-    "@types/react-router-dom": "^5.3.3",
-    "@types/styled-components": "^5.1.34",
->>>>>>> b84780bda6b4cce858b5ae4b340cce9812231cc3
     "@typescript-eslint/eslint-plugin": "^8.35.1",
     "@typescript-eslint/parser": "^8.35.1",
     "@vitejs/plugin-react": "^4.6.0",
@@ -38,10 +36,7 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
-    "globals": "^16.2.0",
     "prettier": "^3.6.2",
-    "typescript": "~5.8.3",
-    "typescript-eslint": "^8.34.1",
-    "vite": "^7.0.0"
+    "typescript": "~5.8.3"
   }
 }
