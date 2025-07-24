@@ -1,4 +1,4 @@
-import type { CheckinSchemaType } from '../components/CheckinForm/checkinSchema';
+import type { CheckinSchemaType } from '../schemas/CheckinSchemaZod';
 
 export default class HandleSubmit {
   private static API_URL =

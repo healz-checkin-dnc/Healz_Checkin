@@ -14,8 +14,8 @@ export default defineConfig({
   build: {
     target: 'es2022',     // Código moderno, menos polyfills
     sourcemap: true,      // Facilita debug pós-build
-    outDir: 'dist',       // Pasta de saída padrão
-    minify: 'esbuild',    // Minificador rápido e eficiente
+    outDir: 'dist/client',       // Pasta de saída padrão
+    minify: 'esbuild',    
     rollupOptions: {
       output: {
         entryFileNames: 'assets/[name].[hash].js',   // Arquivos de entrada com hash para cache busting
