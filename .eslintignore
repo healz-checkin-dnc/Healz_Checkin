@@ -1,9 +1,0 @@
-# Dependências
-node_modules/
-
-# Builds e saídas
-dist/
-build/
-
-# Arquivo de ambiente (variáveis secretas)
-.env
